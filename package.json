@@ -1,8 +1,8 @@
 {
   "name": "galileo",
   "scripts": {
-    "build:js": "browserify -d src/app.js -o bundle.js -t babelify",
-    "watch:js": "watchify -d src/app.js -o bundle.js -t babelify",
+    "build:js": "browserify -d app/index.js -o bundle.js -t babelify",
+    "watch:js": "watchify -d app/index.js -o bundle.js -t babelify",
     "minify:js": "uglifyjs bundle.js -o bundle.min.js --screw-ie8 -c",
     "size": "gzip-size bundle.min.js | pretty-bytes"
   },

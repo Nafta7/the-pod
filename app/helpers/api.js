@@ -1,4 +1,4 @@
-const key = require('../credentials').api_key
+const key = require('../../credentials').api_key
 
 const url = 'https://api.nasa.gov/planetary/apod?'
 const keyParam = `api_key=${key}`
