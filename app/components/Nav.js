@@ -39,7 +39,7 @@ const Nav = (props) => {
           <li>
             <button type="submit" class="btn"
                     onClick={props.onToggleClick}>
-              Toggle
+              Toggle info
             </button>
           </li>
         </ul>
