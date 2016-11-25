@@ -31,6 +31,7 @@ class App extends Component {
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
     this.handleNextClick = this.handleNextClick.bind(this)
+    this.handleToggleClick = this.handleToggleClick.bind(this)
     this.handleRandomClick = this.handleRandomClick.bind(this)
     this.receive = this.receive.bind(this)
   }
@@ -66,6 +67,12 @@ class App extends Component {
     })
   }
 
+  handleToggleClick(){
+    this.setState({
+      showInfo: !this.state.showInfo
+    })
+  }
+
   handlePreviousClick(){
     this.setState({
       isLoading: true
@@ -93,6 +100,7 @@ class App extends Component {
         onPreviousClick={this.handlePreviousClick}
         onNextClick={this.handleNextClick}
         onRandomClick={this.handleRandomClick}
+        onToggleClick={this.handleToggleClick}
         image_hd={this.state.image_hd}
         title={this.state.title}
         explanation={this.state.explanation}

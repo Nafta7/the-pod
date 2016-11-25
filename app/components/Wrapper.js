@@ -22,14 +22,13 @@ const Wrapper = (props) => {
     } else {
       return (
         <div>
-          <div class="nav-wrapper">
             <Nav
               date={props.date}
               onPreviousClick={props.onPreviousClick}
               onNextClick={props.onNextClick}
+              onToggleClick={props.onToggleClick}
               onRandomClick={props.onRandomClick} />
 
-          </div>
           <div class="wrapper" style={{backgroundImage: `url(${props.image_hd})`}}>
             <div class={`container ${textClass}`}>
               <div class="text">
