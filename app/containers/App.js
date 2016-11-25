@@ -80,7 +80,6 @@ class App extends Component {
   }
 
   handleNextClick(){
-    console.log(tomorrow(this.state.date));
     this.setState({
       isLoading: true
     }, this.makeRequest(tomorrow(this.state.date)))
