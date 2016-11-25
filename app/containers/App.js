@@ -19,6 +19,8 @@ import tomorrow from '../helpers/tomorrow'
 import normalizeDate from '../helpers/normalize-date'
 import randomDate from '../helpers/random-date'
 
+const downloadImage = new Image()
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -38,16 +40,21 @@ class App extends Component {
 
   receive(data){
     let date = normalizeDate(new Date(data.date))
-    this.setState({
-      image: data.url,
-      image_hd: data.hdurl,
-      title: data.title,
-      explanation: data.explanation,
-      date: date,
-      tries: 0,
-      isFailure: false,
-      isLoading: false
-    })
+    
+    downloadImage.onload = () => {
+      this.setState({
+        image: data.url,
+        image_hd: data.hdurl,
+        title: data.title,
+        explanation: data.explanation,
+        date: date,
+        tries: 0,
+        isFailure: false,
+        isLoading: false
+      })
+    }
+
+    downloadImage.src = data.hdurl
   }
 
   makeRequest(date){
