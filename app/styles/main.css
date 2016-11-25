@@ -1,32 +1,24 @@
 body {
-  margin: 0 2em;
+  margin: 0;
 }
 
-.image {
-  height: 70vh;
-}
-
-.image-container {
+.wrapper {
+  background-position: top center;
+  background-size: cover;
+  min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-.image-container > * {
-  flex-basis: 50%;
-  margin-left: 1em;
+.nav-wrapper {
+  position: absolute;
+  width: 100%;
+  right: 2em;
 }
 
 .nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .menu {
@@ -42,11 +34,15 @@ body {
   margin-right: 0;
 }
 
+.container {
+  margin: 0 2em;
+}
+
 .btn {
   background-color: black;
   color: white;
   padding: 1em 3em;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 .btn:hover {
@@ -54,4 +50,23 @@ body {
   color: black;
   border: 1px solid black;
   cursor: pointer;
+}
+
+.text {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 1em;
+  font-size: 1.2em;
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
 }
