@@ -25,7 +25,8 @@ class App extends Component {
     super(props)
     this.state = {
       isLoading: true,
-      tries: 0
+      tries: 0,
+      isFailure: false
     }
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
@@ -41,8 +42,9 @@ class App extends Component {
       title: data.title,
       explanation: data.explanation,
       date: date,
-      isLoading: false,
-      tries: 0
+      tries: 0,
+      isFailure: false,
+      isLoading: false
     })
   }
 
@@ -50,9 +52,16 @@ class App extends Component {
     getByDate(date)
     .then(this.receive)
     .catch(err => {
-      this.setState({
-        tries: this.state.tries + 1
-      }, this.makeRequest(yesterday(date)))
+      if (this.state.tries >= Constants.MAX_TRY)  {
+        this.setState({
+          isFailure: true,
+          isLoading: false
+        })
+      } else {
+        this.setState({
+          tries: this.state.tries + 1
+        }, this.makeRequest(yesterday(date)))
+      }
     })
   }
 
@@ -75,29 +84,35 @@ class App extends Component {
         <Loading />
       )
     } else {
-      return (
-        <div>
-          <Nav onPreviousClick={this.handlePreviousClick}
-               onRandomClick={this.handleRandomClick} />
+      if (this.state.isFailure) {
+        return (
+          <h1>Request failed {this.state.tries + 1} times. Try again later. </h1>
+        )
+      } else {
+        return (
+          <div>
+            <Nav onPreviousClick={this.handlePreviousClick}
+                 onRandomClick={this.handleRandomClick} />
 
-          <div class="image-container">
-            <div class="center">
-              <img src={`${this.state.image_hd}`} class="image" />
+            <div class="image-container">
+              <div class="center">
+                <img src={`${this.state.image_hd}`} class="image" />
+              </div>
+
+              <div>
+                <h1>{this.state.title}</h1>
+                <p>
+                  {this.state.explanation}
+                </p>
+                <p>
+                  {displayDate(this.state.date)}
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h1>{this.state.title}</h1>
-              <p>
-                {this.state.explanation}
-              </p>
-              <p>
-                {displayDate(this.state.date)}
-              </p>
-            </div>
           </div>
-
-        </div>
-      )
+        )
+      }
     }
   }
 
