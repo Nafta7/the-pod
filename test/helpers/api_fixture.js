@@ -1,6 +1,6 @@
-import AppConstants from '../app/constants/AppConstants'
-import randomInt from '../app/helpers/random-int'
-const fixture = require('./fixture-data')
+import APIConstants from '../constants/APIConstants'
+import randomInt from '../../app/helpers/random-int'
+const fixture = require('../fixture-data')
 
 function getLatest(){
   var p = new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ function getLatest(){
 function getByDate(date){
   return getByDateCall(date)
   .then((data) => {
-    if (AppConstants.TEST_FAILURE)
+    if (APIConstants.TEST_FAILURE)
       throw new Error("Error")
     else
       return data
@@ -32,7 +32,7 @@ function getByDateCall(date){
   let p = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fixture)
-    }, AppConstants.DEV_TIMEOUT)
+    }, APIConstants.DEV_TIMEOUT)
   })
 
   return p

@@ -2,11 +2,11 @@ import { h, Component } from 'preact';
 import AppConstants from '../constants/AppConstants'
 import Constants from '../constants/Constants'
 const config = require('../../appconfig')
-let getLatest, getByDate
 
-if (config.mode === AppConstants.MODE_DEV) {
-  getLatest = require('../../test/api_fixture').getLatest
-  getByDate = require('../../test/api_fixture').getByDate
+let getLatest, getByDate
+if (config.mode === AppConstants.DEV_MODE) {
+  getLatest = require('../../test/helpers/api_fixture').getLatest
+  getByDate = require('../../test/helpers/api_fixture').getByDate
 } else {
   getLatest = require('../helpers/api').getLatest
   getByDate = require('../helpers/api').getByDate
