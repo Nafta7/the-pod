@@ -12,13 +12,11 @@ if (config.mode === AppConstants.DEV_MODE) {
   getByDate = require('../helpers/api').getByDate
 }
 
-import Nav from '../components/Nav'
-import Loading from '../components/Loading'
+import Wrapper from '../components/Wrapper'
 
 import yesterday from '../helpers/yesterday'
 import normalizeDate from '../helpers/normalize-date'
 import randomDate from '../helpers/random-date'
-import displayDate from '../helpers/display-date'
 
 class App extends Component {
   constructor(props){
@@ -26,7 +24,8 @@ class App extends Component {
     this.state = {
       isLoading: true,
       tries: 0,
-      isFailure: false
+      isFailure: false,
+      showInfo: true
     }
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
@@ -79,41 +78,18 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return (
-        <Loading />
-      )
-    } else {
-      if (this.state.isFailure) {
-        return (
-          <h1>Request failed {this.state.tries + 1} times. Try again later. </h1>
-        )
-      } else {
-        return (
-          <div>
-            <Nav onPreviousClick={this.handlePreviousClick}
-                 onRandomClick={this.handleRandomClick} />
-
-            <div class="image-container">
-              <div class="center">
-                <img src={`${this.state.image_hd}`} class="image" />
-              </div>
-
-              <div>
-                <h1>{this.state.title}</h1>
-                <p>
-                  {this.state.explanation}
-                </p>
-                <p>
-                  {displayDate(this.state.date)}
-                </p>
-              </div>
-            </div>
-
-          </div>
-        )
-      }
-    }
+    return (
+      <Wrapper
+        isLoading={this.state.isLoading}
+        isFailure={this.state.isFailure}
+        onPreviousClick={this.handlePreviousClick}
+        onRandomClick={this.handleRandomClick}
+        image_hd={this.state.image_hd}
+        title={this.state.title}
+        explanation={this.state.explanation}
+        date={this.state.date}
+        showInfo={this.state.showInfo} />
+    )
   }
 
   componentWillMount(){
