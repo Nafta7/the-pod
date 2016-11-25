@@ -11,27 +11,41 @@ const Nav = (props) => {
     disablePrevious = true
 
   return (
-    <nav class="nav">
-      <ul class="menu">
-        <li>
-          <button type="submit" class="btn" disabled={disablePrevious}
-                  onClick={props.onPreviousClick}>
-            Previous
-          </button>
-        </li>
-        <li>
-          <button type="submit" class="btn"
-            onClick={props.onRandomClick}>
-            Random</button>
-        </li>
-        <li>
-          <button type="submit" class="btn" disabled={disableNext}
-                  onClick={props.onNextClick}>
-            Next
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <div class="nav-wrapper">
+      <h1 class="title">THE POD</h1>
+      <nav class="nav nav-center">
+        <ul class="menu">
+          <li>
+            <button type="submit" class="btn" disabled={disablePrevious}
+                    onClick={props.onPreviousClick}>
+              Previous
+            </button>
+          </li>
+          <li>
+            <button type="submit" class="btn"
+              onClick={props.onRandomClick}>
+              Random</button>
+          </li>
+          <li>
+            <button type="submit" class="btn" disabled={disableNext}
+                    onClick={props.onNextClick}>
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <nav class="nav nav-right">
+        <ul class="menu">
+          <li>
+            <button type="submit" class="btn"
+                    onClick={props.onToggleClick}>
+              Toggle
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
   )
 }
 

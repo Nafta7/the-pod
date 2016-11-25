@@ -12,13 +12,27 @@ body {
 
 .nav-wrapper {
   position: absolute;
-  width: 100%;
-  right: 2em;
+  left: 0;
+  right: 0;
+  width: 95%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav {
   display: flex;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.nav-center {
   justify-content: center;
+}
+
+.nav-right {
+  justify-content: flex-end;
 }
 
 .menu {
@@ -82,4 +96,12 @@ body {
 
 .right {
   text-align: right;
+}
+
+.title {
+  color: white;
+  font-size: 3.5em;
+  margin: 0;
+  line-height: 1;
+  flex-grow: 0;
 }
