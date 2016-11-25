@@ -10,6 +10,8 @@ A website using the Astronomy Picture of the Day API from NASA.
 - [x] pretty layout/design.
 
 - [x] Add next button
-- [ ] Add a new button on the right side of nav called toggle. It should
+- [x] Add a new button on the right side of nav called toggle. It should
 toggle the main text area to show relative information about the current picture.
-- [ ] Add a tittle for the app on the navbar. The Pod is a good name.
+- [x] Add a tittle for the app on the navbar. The Pod is a good name.
+
+- [ ] Add transition animations. Needs research.
