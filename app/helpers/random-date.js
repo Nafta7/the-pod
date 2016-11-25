@@ -1,6 +1,7 @@
-// Jun 16, 1995 and Nov 20, 2016.
+import Constants from '../constants/Constants'
+
 function random(){
-  return randomDate(new Date(1995, 16, 6), new Date())
+  return randomDate(Constants.OLDEST_DAY, Constants.LATEST_DAY)
 }
 
 // Taken from stackoverflow user tomasz:
