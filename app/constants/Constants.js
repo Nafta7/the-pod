@@ -1,5 +1,8 @@
+import normalizeDate from '../helpers/normalize-date'
+
 const Constants = {
-  INITIAL_DAY: new Date('2016-11-13'),
+  LATEST_DAY: normalizeDate(new Date()),
+  OLDEST_DAY: normalizeDate(new Date('1995-06-16')),
   MAX_TRY: 3
 }
 

@@ -23,8 +23,11 @@ const Wrapper = (props) => {
       return (
         <div>
           <div class="nav-wrapper">
-            <Nav onPreviousClick={props.onPreviousClick}
-                 onRandomClick={props.onRandomClick} />
+            <Nav
+              date={props.date}
+              onPreviousClick={props.onPreviousClick}
+              onNextClick={props.onNextClick}
+              onRandomClick={props.onRandomClick} />
 
           </div>
           <div class="wrapper" style={{backgroundImage: `url(${props.image_hd})`}}>

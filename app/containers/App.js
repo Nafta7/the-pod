@@ -15,6 +15,7 @@ if (config.mode === AppConstants.DEV_MODE) {
 import Wrapper from '../components/Wrapper'
 
 import yesterday from '../helpers/yesterday'
+import tomorrow from '../helpers/tomorrow'
 import normalizeDate from '../helpers/normalize-date'
 import randomDate from '../helpers/random-date'
 
@@ -29,6 +30,7 @@ class App extends Component {
     }
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
+    this.handleNextClick = this.handleNextClick.bind(this)
     this.handleRandomClick = this.handleRandomClick.bind(this)
     this.receive = this.receive.bind(this)
   }
@@ -68,7 +70,13 @@ class App extends Component {
     this.setState({
       isLoading: true
     }, this.makeRequest(yesterday(this.state.date)))
+  }
 
+  handleNextClick(){
+    console.log(tomorrow(this.state.date));
+    this.setState({
+      isLoading: true
+    }, this.makeRequest(tomorrow(this.state.date)))
   }
 
   handleRandomClick(){
@@ -83,6 +91,7 @@ class App extends Component {
         isLoading={this.state.isLoading}
         isFailure={this.state.isFailure}
         onPreviousClick={this.handlePreviousClick}
+        onNextClick={this.handleNextClick}
         onRandomClick={this.handleRandomClick}
         image_hd={this.state.image_hd}
         title={this.state.title}
@@ -93,7 +102,7 @@ class App extends Component {
   }
 
   componentWillMount(){
-    let today = normalizeDate(Constants.INITIAL_DAY)
+    let today = normalizeDate(Constants.LATEST_DAY)
     this.makeRequest(today)
   }
 }
