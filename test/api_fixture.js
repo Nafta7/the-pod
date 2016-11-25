@@ -13,10 +13,19 @@ function getLatest(){
 }
 
 function getByDate(date){
+  return getByDateCall(date)
+  .then((data) => {
+    if (AppConstants.TEST_FAILURE)
+      throw new Error("Error")
+    else
+      return data
+  })
+}
+
+function getByDateCall(date){
   var arr = Array.apply(null, Array(7))
   arr.forEach((item, i) => arr[i] = `images/img_${i+1}.jpg`)
   let image = randomInt(1, 7)
-  console.log(image);
   fixture.hdurl = arr[image-1]
   fixture.url = arr[image-1]
 
