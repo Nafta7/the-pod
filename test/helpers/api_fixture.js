@@ -28,6 +28,7 @@ function getByDateCall(date){
   let image = randomInt(1, 7)
   fixture.hdurl = arr[image-1]
   fixture.url = arr[image-1]
+  fixture.date = date
 
   let p = new Promise((resolve, reject) => {
     setTimeout(() => {
