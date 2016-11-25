@@ -2,8 +2,8 @@ import { h } from 'preact'
 
 const Loading = (props) => {
   return (
-    <div>
-      <h1>Loading...</h1>
+    <div class="loading">
+      <h1 class="title">Loading...</h1>
     </div>
   )
 }
