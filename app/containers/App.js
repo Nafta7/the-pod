@@ -16,8 +16,8 @@ import Wrapper from '../components/Wrapper'
 
 import yesterday from '../helpers/yesterday'
 import tomorrow from '../helpers/tomorrow'
-import normalizeDate from '../helpers/normalize-date'
 import randomDate from '../helpers/random-date'
+import strToDate from '../helpers/strToDate'
 
 const downloadImage = new Image()
 
@@ -39,8 +39,8 @@ class App extends Component {
   }
 
   receive(data){
-    let date = normalizeDate(new Date(data.date))
-    
+    let date = strToDate(data.date)
+
     downloadImage.onload = () => {
       this.setState({
         image: data.url,
@@ -116,7 +116,7 @@ class App extends Component {
   }
 
   componentWillMount(){
-    let today = normalizeDate(Constants.LATEST_DAY)
+    let today = Constants.LATEST_DAY
     this.makeRequest(today)
   }
 }

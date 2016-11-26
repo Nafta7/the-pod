@@ -1,11 +1,12 @@
 import { h } from 'preact'
 import Constants from '../constants/Constants'
-import normalizeDate from '../helpers/normalize-date'
+import isSameDay from '../helpers/isSameDay'
 
 const Nav = (props) => {
   let date = props.date
   let disableNext = false, disablePrevious = false
-  if (date >= Constants.LATEST_DAY)
+
+  if (isSameDay(date, Constants.LATEST_DAY))
     disableNext = true
   if (date <= Constants.OLDEST_DAY)
     disablePrevious = true

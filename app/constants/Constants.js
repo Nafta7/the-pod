@@ -1,8 +1,9 @@
-import normalizeDate from '../helpers/normalize-date'
+import today from '../helpers/today'
+import strToDate from '../helpers/strToDate'
 
 const Constants = {
-  LATEST_DAY: normalizeDate(new Date()),
-  OLDEST_DAY: normalizeDate(new Date('1995-06-16')),
+  LATEST_DAY: today(),
+  OLDEST_DAY: strToDate('2016-06-16'),
   MAX_TRY: 3
 }
 
