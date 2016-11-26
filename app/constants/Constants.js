@@ -3,7 +3,7 @@ import strToDate from '../helpers/strToDate'
 
 const Constants = {
   LATEST_DAY: today(),
-  OLDEST_DAY: strToDate('2016-06-16'),
+  OLDEST_DAY: strToDate('1995-06-16'),
   MAX_TRY: 3
 }
 
