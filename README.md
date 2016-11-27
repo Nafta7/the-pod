@@ -20,5 +20,7 @@ it (for now). sample: https://api.nasa.gov/planetary/apod?api_key=XcvfOgftmxfFvT
 
 - [ ] Add transition animations. Needs research.
 
-- [ ] Host on github and deploy the site using github pages.
-- [ ] Add deployment automation scripts.
+- [x] Host on github and deploy the site using github pages.
+- [x] Add deployment automation scripts.
+
+- [ ] Add a license.
