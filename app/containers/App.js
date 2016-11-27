@@ -28,7 +28,7 @@ class App extends Component {
       isLoading: true,
       tries: 0,
       isFailure: false,
-      showInfo: true
+      showInfo: false
     }
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
