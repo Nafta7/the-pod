@@ -39,8 +39,8 @@ class App extends Component {
   receive(date, data){
     downloadImage.onload = () => {
       this.setState({
-        image: data.url,
-        image_hd: data.hdurl,
+        image: data.url.replace('http', 'https'),
+        image_hd: data.hdurl.replace('http', 'https'),
         title: data.title,
         explanation: data.explanation,
         date: date,
@@ -50,7 +50,7 @@ class App extends Component {
       })
     }
 
-    downloadImage.src = data.hdurl
+    downloadImage.src = data.hdurl.replace('http', 'https')
   }
 
   makeRequest(currentDate, type){
