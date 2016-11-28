@@ -1,4 +1,4 @@
-# galileo - APOD website
+# THE POD
 
 A website using the Astronomy Picture of the Day API from NASA.
 
@@ -24,3 +24,4 @@ it (for now). sample: https://api.nasa.gov/planetary/apod?api_key=XcvfOgftmxfFvT
 - [x] Add deployment automation scripts.
 
 - [ ] Add a license.
+- [ ] Re-think makeRequest. it should also consider next(tomorrow)
