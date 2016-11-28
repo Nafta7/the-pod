@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import Constants from '../constants/Constants'
-import isSameDay from '../helpers/isSameDay'
+import isSameDay from '../helpers/is-same-day'
 
 const Nav = (props) => {
   let date = props.date
