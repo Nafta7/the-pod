@@ -17,7 +17,12 @@ const Wrapper = (props) => {
   } else {
     if (props.isFailure) {
       return (
-        <h1>Request failed {this.state.tries + 1} times. Try again later. </h1>
+        <div class="loading">
+          <h1 class="title">
+            Request failed {props.tries + 1} times. <br/>
+            Try again later.
+          </h1>
+        </div>
       )
     } else {
       return (
