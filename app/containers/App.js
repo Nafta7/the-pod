@@ -1,14 +1,13 @@
 import { h, Component } from 'preact';
 import AppConstants from '../constants/AppConstants'
 import Constants from '../constants/Constants'
+import ActionType from '../constants/ActionType'
 const config = require('../../appconfig')
 
-let getLatest, getByDate
+let getByDate
 if (config.mode === AppConstants.DEV_MODE) {
-  getLatest = require('../../test/helpers/api_fixture').getLatest
   getByDate = require('../../test/helpers/api_fixture').getByDate
 } else {
-  getLatest = require('../helpers/api').getLatest
   getByDate = require('../helpers/api').getByDate
 }
 
@@ -17,7 +16,6 @@ import Wrapper from '../components/Wrapper'
 import yesterday from '../helpers/yesterday'
 import tomorrow from '../helpers/tomorrow'
 import randomDate from '../helpers/random-date'
-import strToDate from '../helpers/strToDate'
 
 const downloadImage = new Image()
 
@@ -38,9 +36,7 @@ class App extends Component {
     this.receive = this.receive.bind(this)
   }
 
-  receive(data){
-    let date = strToDate(data.date)
-
+  receive(date, data){
     downloadImage.onload = () => {
       this.setState({
         image: data.url,
@@ -57,9 +53,26 @@ class App extends Component {
     downloadImage.src = data.hdurl
   }
 
-  makeRequest(date){
+  makeRequest(currentDate, type){
+    let date
+
+    switch(type) {
+      case ActionType.PREVIOUS:
+         date = yesterday(currentDate)
+        break
+      case ActionType.NEXT:
+        date = tomorrow(currentDate)
+        break
+      case ActionType.RANDOM:
+        date = randomDate(currentDate)
+        break
+      default:
+        date = currentDate
+        break
+    }
+
     getByDate(date)
-    .then(this.receive)
+    .then(this.receive.bind(null, date))
     .catch(err => {
       if (this.state.tries >= Constants.MAX_TRY)  {
         this.setState({
@@ -69,7 +82,7 @@ class App extends Component {
       } else {
         this.setState({
           tries: this.state.tries + 1
-        }, this.makeRequest(yesterday(date)))
+        }, this.makeRequest(date, type))
       }
     })
   }
@@ -83,19 +96,19 @@ class App extends Component {
   handlePreviousClick(){
     this.setState({
       isLoading: true
-    }, this.makeRequest(yesterday(this.state.date)))
+    }, this.makeRequest(this.state.date, ActionType.PREVIOUS))
   }
 
   handleNextClick(){
     this.setState({
       isLoading: true
-    }, this.makeRequest(tomorrow(this.state.date)))
+    }, this.makeRequest(this.state.date, ActionType.NEXT))
   }
 
   handleRandomClick(){
     this.setState({
       isLoading: true
-    }, this.makeRequest(randomDate(this.state.date)))
+    }, this.makeRequest(this.state.date, ActionType.RANDOM))
   }
 
   render() {
@@ -103,6 +116,7 @@ class App extends Component {
       <Wrapper
         isLoading={this.state.isLoading}
         isFailure={this.state.isFailure}
+        tries={this.state.tries}
         onPreviousClick={this.handlePreviousClick}
         onNextClick={this.handleNextClick}
         onRandomClick={this.handleRandomClick}
@@ -116,8 +130,7 @@ class App extends Component {
   }
 
   componentWillMount(){
-    let today = Constants.LATEST_DAY
-    this.makeRequest(today)
+    this.makeRequest(Constants.LATEST_DAY)
   }
 }
 
