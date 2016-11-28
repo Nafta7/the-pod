@@ -8,9 +8,13 @@
     "inspect:gzip": "npm run build:js && npm run minify:js && gzip-size bundle.min.js | pretty-bytes",
     "inspect:bundle": "browserify --full-paths -d app/index.js -o bundle.js -t babelify && uglifyjs bundle.js -o bundle.min.js -mc && discify bundle.min.js > disc.html --open",
     "minify:css": "cleancss -o dist/main.min.css app/styles/main.css",
+    "preproduction:build": "npm run mode:production",
     "production:build": "npm run build:js | npm run minify:css && npm run minify:js",
+    "postproduction:build": "npm run mode:development",
     "production:push": "gh-pages -d dist",
-    "deploy": "npm run production:build && npm run production:push"
+    "deploy": "npm run production:build && npm run production:push",
+    "mode:development": "json -I -f appconfig.json -e 'this.mode=`dev`'",
+    "mode:production": "json -I -f appconfig.json -e 'this.mode=`prod`'"
   },
   "version": "1.0.0",
   "main": "index.js",
@@ -26,6 +30,7 @@
     "gh-pages": "^0.12.0",
     "gzip-size-cli": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "json": "^9.0.4",
     "node-fetch": "^1.6.3",
     "pretty-bytes": "^4.0.2",
     "tape": "^4.6.2",
