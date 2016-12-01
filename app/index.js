@@ -1,4 +1,4 @@
 import { h, render } from 'preact';
-import App from './containers/App'
+import AppContainer from './containers/AppContainer'
 
-render(<App />, document.getElementById('app'));
+render(<AppContainer />, document.getElementById('app'));

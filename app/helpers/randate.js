@@ -1,6 +1,6 @@
 import Constants from '../constants/Constants'
 
-function random(){
+function randate(){
   return randomDate(Constants.OLDEST_DAY, Constants.LATEST_DAY)
 }
 
@@ -10,4 +10,4 @@ function randomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
 }
 
-module.exports = random
+module.exports = randate

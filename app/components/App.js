@@ -5,7 +5,7 @@ import Loading from '../components/Loading'
 
 import displayDate from '../helpers/display-date'
 
-const Wrapper = (props) => {
+const App = (props) => {
   let textClass = ''
   if (!props.showInfo)
     textClass = 'hidden'
@@ -53,4 +53,4 @@ const Wrapper = (props) => {
   }
 }
 
-export default Wrapper
+export default App

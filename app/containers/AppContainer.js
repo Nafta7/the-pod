@@ -6,20 +6,20 @@ const config = require('../../appconfig')
 
 let getByDate
 if (config.mode === AppConstants.DEV_MODE) {
-  getByDate = require('../../test/helpers/api_fixture').getByDate
+  getByDate = require('../../test/helpers/api_fixture')
 } else {
-  getByDate = require('../helpers/api').getByDate
+  getByDate = require('../helpers/api')
 }
 
-import Wrapper from '../components/Wrapper'
+import App from '../components/App'
 
 import yesterday from '../helpers/yesterday'
 import tomorrow from '../helpers/tomorrow'
-import randomDate from '../helpers/random-date'
+import randate from '../helpers/randate'
 
 const downloadImage = new Image()
 
-class App extends Component {
+class AppContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -37,10 +37,10 @@ class App extends Component {
   }
 
   receive(date, data){
-    downloadImage.onload = () => {
+    const update = () => {
       this.setState({
-        image: data.url.replace('http', 'https'),
-        image_hd: data.hdurl.replace('http', 'https'),
+        image: data.url,
+        image_hd: data.hdurl,
         title: data.title,
         explanation: data.explanation,
         date: date,
@@ -50,7 +50,12 @@ class App extends Component {
       })
     }
 
-    downloadImage.src = data.hdurl.replace('http', 'https')
+    if (Constants.WAIT_IMAGE) {
+      downloadImage.onload = update
+      downloadImage.src = data.hdurl
+    } else {
+      update()
+    }
   }
 
   makeRequest(currentDate, type){
@@ -64,10 +69,15 @@ class App extends Component {
         date = tomorrow(currentDate)
         break
       case ActionType.RANDOM:
-        date = randomDate(currentDate)
+        date = randate(currentDate)
         break
-      default:
+      case ActionType.NEWEST:
         date = currentDate
+        type = ActionType.LATEST
+        break
+      case ActionType.LATEST:
+        date = yesterday(currentDate)
+        Constants.LATEST_DAY = date
         break
     }
 
@@ -113,7 +123,7 @@ class App extends Component {
 
   render() {
     return (
-      <Wrapper
+      <App
         isLoading={this.state.isLoading}
         isFailure={this.state.isFailure}
         tries={this.state.tries}
@@ -130,8 +140,8 @@ class App extends Component {
   }
 
   componentWillMount(){
-    this.makeRequest(Constants.LATEST_DAY)
+    this.makeRequest(Constants.LATEST_DAY, ActionType.NEWEST)
   }
 }
 
-export default App
+export default AppContainer
