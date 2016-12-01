@@ -35,6 +35,4 @@ function getByDateCall(date){
   return p
 }
 
-module.exports = {
-  getByDate
-}
+module.exports = getByDate
