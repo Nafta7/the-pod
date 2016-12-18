@@ -1,6 +1,7 @@
 {
   "name": "galileo",
   "scripts": {
+    "start": "npm run watch:js",
     "build:js": "browserify --debug -d app/index.js -o bundle.js -t babelify",
     "build-fp:js": "browserify --full-paths -d app/index.js -o bundle.js -t babelify",
     "watch:js": "watchify --debug -d app/index.js -o bundle.js -t babelify",
