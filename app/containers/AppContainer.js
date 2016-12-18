@@ -123,7 +123,6 @@ class AppContainer extends Component {
   }
 
   handleHomeClick(){
-    console.log('key')
     window.location = 'index.html'
   }
 
