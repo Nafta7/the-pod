@@ -6,9 +6,9 @@ import Loading from '../components/Loading'
 import displayDate from '../helpers/display-date'
 
 const App = (props) => {
-  let textClass = ''
+  let boxHidden = ''
   if (!props.showInfo)
-    textClass = 'hidden'
+    boxHidden = 'hidden'
 
   if (props.isLoading) {
     return (
@@ -32,20 +32,22 @@ const App = (props) => {
               onPreviousClick={props.onPreviousClick}
               onNextClick={props.onNextClick}
               onToggleClick={props.onToggleClick}
+              onHomeClick={props.onHomeClick}
               onRandomClick={props.onRandomClick} />
-
-          <div class="wrapper" style={{backgroundImage: `url(${props.image_hd})`}}>
-            <div class={`container ${textClass}`}>
-              <div class="text">
-                <h1>{props.title}</h1>
-                <p>
-                  {props.explanation}
-                </p>
-                <p>
-                  {displayDate(props.date)}
-                </p>
-              </div>
+          <a href={props.image_hd}>
+            <div class="wrapper" style={{backgroundImage: `url(${props.image_hd})`}}>
             </div>
+          </a>
+          <div class={`box ${boxHidden}`}>
+            <h1 class="box-title">
+              {props.title}
+              <span class="pull-right">
+                {displayDate(props.date)}
+              </span>
+            </h1>
+            <p class="box-text">
+              {props.explanation}
+            </p>
           </div>
         </div>
       )

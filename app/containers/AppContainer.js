@@ -33,6 +33,7 @@ class AppContainer extends Component {
     this.handleNextClick = this.handleNextClick.bind(this)
     this.handleToggleClick = this.handleToggleClick.bind(this)
     this.handleRandomClick = this.handleRandomClick.bind(this)
+    this.handleHomeClick = this.handleHomeClick.bind(this)
     this.receive = this.receive.bind(this)
   }
 
@@ -121,6 +122,11 @@ class AppContainer extends Component {
     }, this.makeRequest(this.state.date, ActionType.RANDOM))
   }
 
+  handleHomeClick(){
+    console.log('key')
+    window.location = 'index.html'
+  }
+
   render() {
     return (
       <App
@@ -130,6 +136,7 @@ class AppContainer extends Component {
         onPreviousClick={this.handlePreviousClick}
         onNextClick={this.handleNextClick}
         onRandomClick={this.handleRandomClick}
+        onHomeClick={this.handleHomeClick}
         onToggleClick={this.handleToggleClick}
         image_hd={this.state.image_hd}
         title={this.state.title}

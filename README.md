@@ -15,6 +15,7 @@ A website using the Astronomy Picture of the Day API from NASA.
 - [ ] Check the response media type. if is a image display, otherwise ignore
 it (for now). sample: https://api.nasa.gov/planetary/apod?api_key=XcvfOgftmxfFvTcinvBS1eFJMTo8yhGnrOlG1Ep4&date=2011-7-11
 
+- [x] Improve mobile UI. Shows only icons on mobile, add text only on larger screens.
+- [x] Add link to image so the user can save it.
 - [ ] Add transition animations. Needs research.
 - [ ] Add a license.
-- [ ] Improve mobile UI. Hide all buttons, use only gestures to interact.

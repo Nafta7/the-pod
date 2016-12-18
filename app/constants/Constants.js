@@ -7,6 +7,4 @@ const Constants = {
   WAIT_IMAGE: false
 }
 
-
-
 export default Constants
