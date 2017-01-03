@@ -1,3 +1,11 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
 }
@@ -145,10 +153,20 @@ body {
 
 .box-title {
   font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .box-text {
+  font-size: 1.0em;
+}
 
+
+@media(max-width: 600px) {
+  .box-text {
+    max-height: 225px;
+    overflow: scroll;
+  }
 }
 
 @media(min-width: 800px) {

@@ -40,8 +40,10 @@ const App = (props) => {
           </a>
           <div class={`box ${boxHidden}`}>
             <h1 class="box-title">
-              {props.title}
-              <span class="pull-right">
+              <span class="box-title-text">
+                {props.title}
+              </span>
+              <span class="box-title-date">
                 {displayDate(props.date)}
               </span>
             </h1>
