@@ -1,7 +1,8 @@
 import { h } from 'preact'
 
-import Nav from '../components/Nav'
-import Loading from '../components/Loading'
+import Nav from './Nav'
+import Loading from './Loading'
+import Overlay from './Overlay'
 
 import displayDate from '../helpers/display-date'
 
@@ -17,7 +18,7 @@ const App = (props) => {
   } else {
     if (props.isFailure) {
       return (
-        <div class="loading">
+        <div class="container">
           <h1 class="title">
             Request failed {props.tries + 1} times. <br/>
             Try again later.
@@ -34,7 +35,7 @@ const App = (props) => {
               onToggleClick={props.onToggleClick}
               onHomeClick={props.onHomeClick}
               onRandomClick={props.onRandomClick} />
-          <a href={props.image_hd}>
+          <a href={props.image_hd} onClick={props.onImageClick}>
             <div class="wrapper" style={{backgroundImage: `url(${props.image_hd})`}}>
             </div>
           </a>
@@ -50,7 +51,13 @@ const App = (props) => {
             <p class="box-text">
               {props.explanation}
             </p>
+
           </div>
+
+          <Overlay
+            showOverlay={props.showOverlay}
+            imageUrl={props.image_hd}
+            onOverlayClick={props.onOverlayClick} />
         </div>
       )
     }

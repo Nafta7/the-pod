@@ -26,7 +26,8 @@ class AppContainer extends Component {
       isLoading: true,
       tries: 0,
       isFailure: false,
-      showInfo: false
+      showInfo: false,
+      showOverlay: false
     }
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
@@ -34,6 +35,8 @@ class AppContainer extends Component {
     this.handleToggleClick = this.handleToggleClick.bind(this)
     this.handleRandomClick = this.handleRandomClick.bind(this)
     this.handleHomeClick = this.handleHomeClick.bind(this)
+    this.handleImageClick = this.handleImageClick.bind(this)
+    this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.receive = this.receive.bind(this)
   }
 
@@ -126,6 +129,22 @@ class AppContainer extends Component {
     window.location = 'index.html'
   }
 
+  handleImageClick(e){
+    e.preventDefault()
+
+    this.setState({
+      showOverlay: true
+    })
+  }
+
+  handleOverlayClick(e){
+    if (e.target.id === 'frame-image') return
+
+    this.setState({
+      showOverlay: false
+    })
+  }
+
   render() {
     return (
       <App
@@ -136,12 +155,15 @@ class AppContainer extends Component {
         onNextClick={this.handleNextClick}
         onRandomClick={this.handleRandomClick}
         onHomeClick={this.handleHomeClick}
+        onImageClick={this.handleImageClick}
         onToggleClick={this.handleToggleClick}
+        onOverlayClick={this.handleOverlayClick}
         image_hd={this.state.image_hd}
         title={this.state.title}
         explanation={this.state.explanation}
         date={this.state.date}
-        showInfo={this.state.showInfo} />
+        showInfo={this.state.showInfo}
+        showOverlay={this.state.showOverlay} />
     )
   }
 
