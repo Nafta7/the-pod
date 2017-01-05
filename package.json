@@ -1,8 +1,8 @@
 {
   "name": "galileo",
   "scripts": {
-    "serve": "browser-sync start --server './' --index 'index.html'",
-    "start": "npm run watch:js",
+    "serve": "browser-sync start --server './' --index 'index.html' --files 'app/styles/*.css, ./*.js'",
+    "start": "npm run watch:js | npm run serve",
     "build:js": "browserify --debug -d app/index.js -o bundle.js -t babelify",
     "build-fp:js": "browserify --full-paths -d app/index.js -o bundle.js -t babelify",
     "watch:js": "watchify --debug -d app/index.js -o bundle.js -t babelify",
