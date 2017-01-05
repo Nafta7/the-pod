@@ -3,6 +3,10 @@ import Constants from '../constants/Constants'
 import isSameDay from '../helpers/is-same-day'
 
 const Nav = (props) => {
+  let toggleButtonClasses = ['btn']
+  if (props.showInfo)
+    toggleButtonClasses.push('active')
+
   let date = props.date
   let disableNext = false, disablePrevious = false
 
@@ -80,7 +84,7 @@ const Nav = (props) => {
         </button>
       </li>
       <li>
-        <button type="submit" class="btn"
+        <button type="submit" class={toggleButtonClasses.join(' ')}
                 onClick={props.onToggleClick}>
 
           <div class="btn-container">

@@ -33,6 +33,7 @@ const App = (props) => {
             onToggleClick={props.onToggleClick}
             onHomeClick={props.onHomeClick}
             onRandomClick={props.onRandomClick}
+            showInfo={props.showInfo}
           />
 
           <ImageWrapper

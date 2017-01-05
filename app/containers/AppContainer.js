@@ -168,6 +168,16 @@ class AppContainer extends Component {
   }
 
   componentWillMount(){
+    // deal with sticky :hover effects on mobile
+    // from: http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml
+    const touchsupport = ('ontouchstart' in window)
+      || (navigator.maxTouchPoints > 0)
+      || (navigator.msMaxTouchPoints > 0)
+
+    if (!touchsupport){ // browser doesn't support touch
+        document.documentElement.classList.add('non-touch')
+    }
+
     this.makeRequest(Constants.LATEST_DAY, ActionType.NEWEST)
   }
 }
