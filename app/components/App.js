@@ -1,63 +1,58 @@
 import { h } from 'preact'
 
-import Nav from './Nav'
 import Loading from './Loading'
+import Failure from './Failure'
+import Nav from './Nav'
+import ImageWrapper from './ImageWrapper'
+import Info from './Info'
 import Overlay from './Overlay'
 
-import displayDate from '../helpers/display-date'
-
 const App = (props) => {
-  let boxHidden = ''
-  if (!props.showInfo)
-    boxHidden = 'hidden'
 
   if (props.isLoading) {
     return (
-      <Loading />
+      <Loading
+      />
     )
   } else {
+
     if (props.isFailure) {
       return (
-        <div class="container">
-          <h1 class="title">
-            Request failed {props.tries + 1} times. <br/>
-            Try again later.
-          </h1>
-        </div>
+        <Failure
+          tries={props.tries}
+        />
       )
     } else {
       return (
         <div>
-            <Nav
-              date={props.date}
-              onPreviousClick={props.onPreviousClick}
-              onNextClick={props.onNextClick}
-              onToggleClick={props.onToggleClick}
-              onHomeClick={props.onHomeClick}
-              onRandomClick={props.onRandomClick} />
-          <a href={props.image_hd} onClick={props.onImageClick}>
-            <div class="wrapper" style={{backgroundImage: `url(${props.image_hd})`}}>
-            </div>
-          </a>
-          <div class={`box ${boxHidden}`}>
-            <h1 class="box-title">
-              <span class="box-title-text">
-                {props.title}
-              </span>
-              <span class="box-title-date">
-                {displayDate(props.date)}
-              </span>
-            </h1>
-            <p class="box-text">
-              {props.explanation}
-            </p>
 
-          </div>
+          <Nav
+            date={props.date}
+            onPreviousClick={props.onPreviousClick}
+            onNextClick={props.onNextClick}
+            onToggleClick={props.onToggleClick}
+            onHomeClick={props.onHomeClick}
+            onRandomClick={props.onRandomClick}
+          />
+
+          <ImageWrapper
+            imageUrl={props.image_hd}
+            onImageClick={props.onImageClick}
+          />
+
+          <Info
+            showInfo={props.showInfo}
+            date={props.date}
+            title={props.title}
+            explanation={props.explanation}
+           />
 
           <Overlay
             showOverlay={props.showOverlay}
             imageUrl={props.image_hd}
-            onOverlayClick={props.onOverlayClick} />
+            onOverlayClick={props.onOverlayClick}
+          />
+
         </div>
       )
     }
