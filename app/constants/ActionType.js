@@ -6,7 +6,7 @@
  */
 const ActionType = {
   PREVIOUS: 'previous',
-  RANDOM: 'random',
+  SHUFFLE: 'shuffle',
   NEXT: 'next',
   NEWEST: 'newest',
   LATEST: 'latest'

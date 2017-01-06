@@ -1,9 +1,9 @@
 import { h, Component } from 'preact';
 import AppConstants from '../constants/AppConstants'
-import Constants from '../constants/Constants'
+import Settings from '../constants/Settings'
+import DaySort from '../constants/DaySort'
 import ActionType from '../constants/ActionType'
 const config = require('../../appconfig')
-
 let getByDate
 if (config.mode === AppConstants.DEV_MODE) {
   getByDate = require('../../test/helpers/api_fixture')
@@ -15,7 +15,7 @@ import App from '../components/App'
 
 import yesterday from '../helpers/yesterday'
 import tomorrow from '../helpers/tomorrow'
-import randate from '../helpers/randate'
+import shuffleDate from '../helpers/shuffle-date'
 
 const downloadImage = new Image()
 
@@ -33,11 +33,51 @@ class AppContainer extends Component {
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
     this.handleNextClick = this.handleNextClick.bind(this)
     this.handleToggleClick = this.handleToggleClick.bind(this)
-    this.handleRandomClick = this.handleRandomClick.bind(this)
+    this.handleShuffleClick = this.handleShuffleClick.bind(this)
     this.handleHomeClick = this.handleHomeClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.receive = this.receive.bind(this)
+  }
+
+  makeRequest(currentDate, type){
+    let date
+
+    switch(type) {
+      case ActionType.PREVIOUS:
+         date = yesterday(currentDate)
+        break
+      case ActionType.NEXT:
+        date = tomorrow(currentDate)
+        break
+      case ActionType.SHUFFLE:
+        date = shuffleDate()
+        break
+      case ActionType.NEWEST:
+        date = currentDate
+        type = ActionType.LATEST
+        DaySort.LATEST = date
+        break
+      case ActionType.LATEST:
+        date = yesterday(currentDate)
+        DaySort.LATEST = date
+        break
+    }
+
+    getByDate(date)
+    .then(this.receive.bind(null, date))
+    .catch(err => {
+      if (this.state.tries >= AppConstants.MAX_TRY)  {
+        this.setState({
+          isFailure: true,
+          isLoading: false
+        })
+      } else {
+        this.setState({
+          tries: this.state.tries + 1
+        }, this.makeRequest(date, type))
+      }
+    })
   }
 
   receive(date, data){
@@ -54,7 +94,7 @@ class AppContainer extends Component {
       })
     }
 
-    if (Constants.WAIT_IMAGE) {
+    if (Settings.IMAGE_SYNC) {
       downloadImage.onload = update
       downloadImage.src = data.hdurl
     } else {
@@ -62,49 +102,10 @@ class AppContainer extends Component {
     }
   }
 
-  makeRequest(currentDate, type){
-    let date
-
-    switch(type) {
-      case ActionType.PREVIOUS:
-         date = yesterday(currentDate)
-        break
-      case ActionType.NEXT:
-        date = tomorrow(currentDate)
-        break
-      case ActionType.RANDOM:
-        date = randate(currentDate)
-        break
-      case ActionType.NEWEST:
-        date = currentDate
-        type = ActionType.LATEST
-        break
-      case ActionType.LATEST:
-        date = yesterday(currentDate)
-        Constants.LATEST_DAY = date
-        break
-    }
-
-    getByDate(date)
-    .then(this.receive.bind(null, date))
-    .catch(err => {
-      if (this.state.tries >= Constants.MAX_TRY)  {
-        this.setState({
-          isFailure: true,
-          isLoading: false
-        })
-      } else {
-        this.setState({
-          tries: this.state.tries + 1
-        }, this.makeRequest(date, type))
-      }
-    })
-  }
-
-  handleToggleClick(){
+  handleHomeClick(){
     this.setState({
-      showInfo: !this.state.showInfo
-    })
+      isLoading: true
+    }, this.makeRequest(DaySort.NEWEST, ActionType.NEWEST))
   }
 
   handlePreviousClick(){
@@ -113,20 +114,22 @@ class AppContainer extends Component {
     }, this.makeRequest(this.state.date, ActionType.PREVIOUS))
   }
 
+  handleShuffleClick(){
+    this.setState({
+      isLoading: true
+    }, this.makeRequest(this.state.date, ActionType.SHUFFLE))
+  }
+
   handleNextClick(){
     this.setState({
       isLoading: true
     }, this.makeRequest(this.state.date, ActionType.NEXT))
   }
 
-  handleRandomClick(){
+  handleToggleClick(){
     this.setState({
-      isLoading: true
-    }, this.makeRequest(this.state.date, ActionType.RANDOM))
-  }
-
-  handleHomeClick(){
-    window.location = 'index.html'
+      showInfo: !this.state.showInfo
+    })
   }
 
   handleImageClick(e){
@@ -153,7 +156,7 @@ class AppContainer extends Component {
         tries={this.state.tries}
         onPreviousClick={this.handlePreviousClick}
         onNextClick={this.handleNextClick}
-        onRandomClick={this.handleRandomClick}
+        onShuffleClick={this.handleShuffleClick}
         onHomeClick={this.handleHomeClick}
         onImageClick={this.handleImageClick}
         onToggleClick={this.handleToggleClick}
@@ -163,7 +166,8 @@ class AppContainer extends Component {
         explanation={this.state.explanation}
         date={this.state.date}
         showInfo={this.state.showInfo}
-        showOverlay={this.state.showOverlay} />
+        showOverlay={this.state.showOverlay}
+      />
     )
   }
 
@@ -175,10 +179,10 @@ class AppContainer extends Component {
       || (navigator.msMaxTouchPoints > 0)
 
     if (!touchsupport){ // browser doesn't support touch
-        document.documentElement.classList.add('non-touch')
+      document.documentElement.classList.add('non-touch')
     }
 
-    this.makeRequest(Constants.LATEST_DAY, ActionType.NEWEST)
+  this.makeRequest(DaySort.NEWEST, ActionType.NEWEST)
   }
 }
 

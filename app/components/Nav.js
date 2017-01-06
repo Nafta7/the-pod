@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import Constants from '../constants/Constants'
+import DaySort from '../constants/DaySort'
 import isSameDay from '../helpers/is-same-day'
 
 const Nav = (props) => {
@@ -10,9 +10,9 @@ const Nav = (props) => {
   let date = props.date
   let disableNext = false, disablePrevious = false
 
-  if (isSameDay(date, Constants.LATEST_DAY))
+  if (isSameDay(date, DaySort.LATEST))
     disableNext = true
-  if (date <= Constants.OLDEST_DAY)
+  if (date <= DaySort.OLDEST)
     disablePrevious = true
 
   return (
@@ -51,7 +51,7 @@ const Nav = (props) => {
       </li>
       <li>
         <button type="submit" class="btn"
-          onClick={props.onRandomClick}>
+          onClick={props.onShuffleClick}>
           <div class="btn-container">
             <span class="btn-icon">
               <svg class="icon" height="24" viewBox="0 0 24 24" width="24"      xmlns="http://www.w3.org/2000/svg">

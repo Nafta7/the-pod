@@ -32,7 +32,7 @@ const App = (props) => {
             onNextClick={props.onNextClick}
             onToggleClick={props.onToggleClick}
             onHomeClick={props.onHomeClick}
-            onRandomClick={props.onRandomClick}
+            onShuffleClick={props.onShuffleClick}
             showInfo={props.showInfo}
           />
 

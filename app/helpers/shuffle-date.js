@@ -1,7 +1,7 @@
-import Constants from '../constants/Constants'
+import DaySort from '../constants/DaySort'
 
-function randate(){
-  return randomDate(Constants.OLDEST_DAY, Constants.LATEST_DAY)
+function shuffleDate(){
+  return randomDate(DaySort.OLDEST, DaySort.NEWEST)
 }
 
 // Taken from stackoverflow user tomasz:
@@ -10,4 +10,4 @@ function randomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
 }
 
-module.exports = randate
+module.exports = shuffleDate
