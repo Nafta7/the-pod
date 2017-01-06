@@ -13,8 +13,8 @@
     "preproduction:build": "npm run mode:production",
     "production:build": "npm run build:js | npm run minify:css && npm run minify:js",
     "postproduction:build": "npm run mode:development",
-    "production:push": "gh-pages -d dist",
-    "deploy": "npm run production:build && npm run production:push",
+    "production:publish": "gh-pages -d dist",
+    "publish": "npm run production:build && npm run production:publish",
     "mode:development": "json -I -f appconfig.json -e 'this.mode=`dev`'",
     "mode:production": "json -I -f appconfig.json -e 'this.mode=`prod`'"
   },
