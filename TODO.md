@@ -1,11 +1,11 @@
 # TODO
 
-- [x] Add an overlay displaying the current picture when
- the user clicks on the picture.
+- [ ] Detect browser platform and only load high resolution
+image for tablet or desktop. 
 
-- [ ] Improve menu and icons. Try grouping them together
-removing the margin between them.
+- [ ] Improve icon dimensions, make it responsive.
 
-- [ ] Add transition animations. Needs research.
+- [ ] Add transition animation between rendered components.
 
 - [ ] Add a nice loading animation.
+
