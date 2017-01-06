@@ -139,7 +139,7 @@ html.non-touch .btn:hover {
   opacity: 0.3;
 }
 
-.btn[disabled]:hover {
+html.non-touch .btn[disabled]:hover {
   cursor: auto;
   background-color: black;
   color: white;
