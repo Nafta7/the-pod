@@ -37,22 +37,12 @@ class AppContainer extends Component {
     this.handleHomeClick = this.handleHomeClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
-    this.receive = this.receive.bind(this)
   }
 
   makeRequest(currentDate, type){
     let date
 
     switch(type) {
-      case ActionType.PREVIOUS:
-         date = yesterday(currentDate)
-        break
-      case ActionType.NEXT:
-        date = tomorrow(currentDate)
-        break
-      case ActionType.SHUFFLE:
-        date = shuffleDate()
-        break
       case ActionType.NEWEST:
         date = currentDate
         type = ActionType.LATEST
@@ -62,22 +52,20 @@ class AppContainer extends Component {
         date = yesterday(currentDate)
         DaySort.LATEST = date
         break
+      case ActionType.PREVIOUS:
+         date = yesterday(currentDate)
+        break
+      case ActionType.NEXT:
+        date = tomorrow(currentDate)
+        break
+      case ActionType.SHUFFLE:
+        date = shuffleDate()
+        break
     }
 
     getByDate(date)
-    .then(this.receive.bind(null, date))
-    .catch(err => {
-      if (this.state.tries >= AppConstants.MAX_TRY)  {
-        this.setState({
-          isFailure: true,
-          isLoading: false
-        })
-      } else {
-        this.setState({
-          tries: this.state.tries + 1
-        }, this.makeRequest(date, type))
-      }
-    })
+      .then(this.receive.bind(this, date))
+      .catch(err => this.handleRejection.bind(this, err, date, type)())
   }
 
   receive(date, data){
@@ -99,6 +87,19 @@ class AppContainer extends Component {
       downloadImage.src = data.hdurl
     } else {
       update()
+    }
+  }
+
+  handleRejection(err, date, type){
+    if (this.state.tries >= AppConstants.MAX_TRY)  {
+      this.setState({
+        isFailure: true,
+        isLoading: false
+      })
+    } else {
+      this.setState({
+        tries: this.state.tries + 1
+      }, this.makeRequest(date, type))
     }
   }
 
