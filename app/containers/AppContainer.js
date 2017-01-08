@@ -12,7 +12,6 @@ if (config.mode === AppConstants.DEV_MODE) {
 }
 
 import App from '../components/App'
-
 import Nav from '../components/Nav'
 import ImageWrapper from '../components/ImageWrapper'
 import Info from '../components/Info'
@@ -21,6 +20,7 @@ import Overlay from '../components/Overlay'
 import yesterday from '../helpers/yesterday'
 import tomorrow from '../helpers/tomorrow'
 import shuffleDate from '../helpers/shuffle-date'
+import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
 
 const downloadImage = new Image()
 
@@ -28,11 +28,11 @@ class AppContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      isLoading: true,
+      showInfo: false,
+      showOverlay: false,
       tries: 0,
       isFailure: false,
-      showInfo: false,
-      showOverlay: false
+      isLoading: true
     }
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
@@ -194,15 +194,7 @@ class AppContainer extends Component {
   }
 
   componentWillMount(){
-    // deal with sticky :hover effects on mobile
-    // from: http://www.javascriptkit.com/dhtmltutors/sticky-hover-issue-solutions.shtml
-    const touchsupport = ('ontouchstart' in window)
-      || (navigator.maxTouchPoints > 0)
-      || (navigator.msMaxTouchPoints > 0)
-
-    if (!touchsupport){ // browser doesn't support touch
-      document.documentElement.classList.add('non-touch')
-    }
+  disableHoverEffectsOnMobile(window)
 
   this.makeRequest(DaySort.NEWEST, ActionType.NEWEST)
   }
