@@ -1,27 +1,21 @@
 import { h, Component } from 'preact';
+
 import AppConstants from '../constants/AppConstants'
-import Settings from '../constants/Settings'
-import DaySort from '../constants/DaySort'
 import ActionType from '../constants/ActionType'
-const config = require('../../appconfig')
-let getByDate
-if (config.mode === AppConstants.DEV_MODE) {
-  getByDate = require('../../test/helpers/api_fixture')
-} else {
-  getByDate = require('../helpers/api')
-}
+import DaySort from '../constants/DaySort'
+import Settings from '../constants/Settings'
 
 import App from '../components/App'
-import Nav from '../components/Nav'
 import ImageWrapper from '../components/ImageWrapper'
 import Info from '../components/Info'
+import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
 
-import yesterday from '../helpers/yesterday'
-import tomorrow from '../helpers/tomorrow'
-import shuffleDate from '../helpers/shuffle-date'
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
-
+import getByDate from '../helpers/get-by-date-bridge'
+import shuffleDate from '../helpers/shuffle-date'
+import tomorrow from '../helpers/tomorrow'
+import yesterday from '../helpers/yesterday'
 const downloadImage = new Image()
 
 class AppContainer extends Component {
