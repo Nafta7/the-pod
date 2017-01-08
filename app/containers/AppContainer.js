@@ -13,6 +13,11 @@ if (config.mode === AppConstants.DEV_MODE) {
 
 import App from '../components/App'
 
+import Nav from '../components/Nav'
+import ImageWrapper from '../components/ImageWrapper'
+import Info from '../components/Info'
+import Overlay from '../components/Overlay'
+
 import yesterday from '../helpers/yesterday'
 import tomorrow from '../helpers/tomorrow'
 import shuffleDate from '../helpers/shuffle-date'
@@ -152,23 +157,39 @@ class AppContainer extends Component {
   render() {
     return (
       <App
-        isLoading={this.state.isLoading}
-        isFailure={this.state.isFailure}
         tries={this.state.tries}
-        onPreviousClick={this.handlePreviousClick}
-        onNextClick={this.handleNextClick}
-        onShuffleClick={this.handleShuffleClick}
-        onHomeClick={this.handleHomeClick}
-        onImageClick={this.handleImageClick}
-        onToggleClick={this.handleToggleClick}
-        onOverlayClick={this.handleOverlayClick}
-        image_hd={this.state.image_hd}
-        title={this.state.title}
-        explanation={this.state.explanation}
-        date={this.state.date}
-        showInfo={this.state.showInfo}
-        showOverlay={this.state.showOverlay}
-      />
+        isFailure={this.state.isFailure}
+        isLoading={this.state.isLoading}
+      >
+
+        <Nav
+          date={this.state.date}
+          showInfo={this.state.showInfo}
+          onHomeClick={this.handleHomeClick}
+          onPreviousClick={this.handlePreviousClick}
+          onShuffleClick={this.handleShuffleClick}
+          onNextClick={this.handleNextClick}
+          onToggleClick={this.handleToggleClick}
+        />
+
+        <ImageWrapper
+          imageUrl={this.state.image_hd}
+          onImageClick={this.handleImageClick}
+        />
+        <Info
+          showInfo={this.state.showInfo}
+          date={this.state.date}
+          title={this.state.title}
+          explanation={this.state.explanation}
+        />
+
+        <Overlay
+          imageUrl={this.state.image_hd}
+          showOverlay={this.state.showOverlay}
+          onOverlayClick={this.handleOverlayClick}
+        />
+
+      </App>
     )
   }
 
