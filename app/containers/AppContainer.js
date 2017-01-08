@@ -194,9 +194,9 @@ class AppContainer extends Component {
   }
 
   componentWillMount(){
-  disableHoverEffectsOnMobile(window)
+    disableHoverEffectsOnMobile(window)
 
-  this.makeRequest(DaySort.NEWEST, ActionType.NEWEST)
+    this.makeRequest(DaySort.NEWEST, ActionType.NEWEST)
   }
 }
 
