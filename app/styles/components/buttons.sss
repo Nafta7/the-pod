@@ -1,0 +1,49 @@
+.btn
+  width: 100%
+  border-width: 0
+  background-color: var(--black)
+  color: var(--white)
+  padding: 0.8em 1.5em
+  border-right-width: 0px
+  border-style: solid
+  display: inline-block
+  transition: background-color 0.5s
+
+  &.active
+    background-color: var(--light-black)
+    cursor: pointer
+
+  &:focus
+    outline: none
+
+  &.btn[disabled]
+    opacity: 0.3
+
+html.non-touch
+
+  &.btn:hover
+    background-color: var(--light-black)
+    cursor: pointer
+
+  &.btn[disabled]:hover
+    cursor: auto
+    background-color: black
+    color: white
+    border-color: white
+
+
+// Icon styles
+.btn-container
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-flow: row
+
+.icon
+  fill: white
+
+.btn-text
+  display: none
+
+  @media (--small-viewport)
+    display: inline

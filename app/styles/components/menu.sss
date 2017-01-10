@@ -1,0 +1,22 @@
+.menu
+  display: flex
+  list-style: none
+  align-items: center
+  justify-content: center
+  flex: 1 0 auto
+  margin: 0
+  position: absolute
+  left: 0
+  right: 0
+  padding: 0
+  z-index: 1
+
+  @media (--small-viewport)
+    margin-top: 1em
+
+  & li
+    display: inline
+    flex: 1
+
+    @media (--small-viewport)
+      flex: none
