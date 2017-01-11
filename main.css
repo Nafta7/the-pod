@@ -96,12 +96,12 @@ body {
 .btn.btn[disabled] {
   opacity: 0.3
 }
-html.non-touch {}
-html.non-touch.btn:hover {
+.non-touch {}
+.non-touch .btn:hover {
   background-color: hsl(0, 0%, 12%);
   cursor: pointer
 }
-html.non-touch.btn[disabled]:hover {
+.non-touch .btn[disabled]:hover {
   cursor: auto;
   background-color: black;
   color: white;
