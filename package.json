@@ -3,8 +3,8 @@
   "scripts": {
     "serve": "browser-sync start --server './' --index 'index.html' --files 'dist/main.css, ./*.js'",
     "start": "npm run watch:js & npm run watch:css & npm run serve",
-    "build": "npm run build:js & npm run build:css",
-    "minify": "npm run minify:js & npm run minify:css",
+    "build": "npm run build:js | npm run build:css",
+    "minify": "npm run minify:js | npm run minify:css",
     "build:js": "browserify --debug -d app/index.js -o bundle.js -t babelify",
     "build:css": "postcss -c ./postcss-config.js",
     "build:main:css": "postcss -u postcss-import -u postcss-nesting -u postcss-css-variables -u css-mqpacker -u postcss-custom-media -p sugarss app/styles/main.sss -d dist/",
