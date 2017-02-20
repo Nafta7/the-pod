@@ -1,6 +1,11 @@
 html {
   box-sizing: border-box
 }
+body {
+  background-color: hsl(204, 47%, 32%);
+  background-image: linear-gradient(-20deg, hsl(204, 47%, 32%) 0%, hsl(253, 28%, 36%) 100%);
+  overflow: hidden
+}
 *, *:before, *:after {
   box-sizing: inherit
 }
@@ -31,7 +36,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: hsl(0, 0%, 5%);
   color: hsl(0, 0%, 95%)
 }
 .wrapper {
@@ -57,6 +61,20 @@ body {
   margin: 0;
   line-height: 1;
   flex-grow: 0
+}
+.fade-enter {
+  opacity: 0.00
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in
+}
+.fade-leave {
+  opacity: 1
+}
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in
 }
 .menu {
   display: flex;
@@ -174,6 +192,58 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%)
+}
+.loading {
+  flex-direction: column
+}
+.quotation {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  margin-top: 4rem;
+  padding-left: 1em
+}
+.quotation:before {
+  content: '\201C';
+  position: absolute;
+  top: 4rem;
+  left: -5rem;
+  font-size: 10em;
+  line-height: 0
+}
+.quote {
+  font-size: 2em;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1em;
+  font-style: italic
+}
+.author {
+  color: hsl(0, 0%, 60%);
+  font-size: 1.5em
+}
+.author:before {
+  content: "\2014 \2009"
+}
+.pulse {
+  width: calc(10 * 1em);
+  height: calc(10 * 1em);
+  background: white;
+  border-radius: 50%;
+  animation: pulse 1.2s ease-in-out infinite
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.0)
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1)
+  }
 }
 @media (min-width: 700px) {
   .menu {
