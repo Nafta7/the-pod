@@ -1,9 +1,17 @@
 import { h } from 'preact'
 
-const Loading = (props) => {
+const Loading = ({ quotation }) => {
+
   return (
-    <div class="container">
-      <h1 class="title">Loading...</h1>
+    <div class={`container loading`}>
+      <div class='pulse'>
+      </div>
+      <blockquote class='quotation'>
+        <p class='quote'>
+          {quotation.quote}
+        </p>
+        <footer class='author'><cite>{quotation.author}</cite></footer>
+      </blockquote>
     </div>
   )
 }

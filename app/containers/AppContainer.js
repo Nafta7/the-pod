@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+import { h, Component } from 'preact'
+import PreactCSSTransitionGroup from 'preact-css-transition-group'
 
 import AppConstants from '../constants/AppConstants'
 import ActionType from '../constants/ActionType'
@@ -10,6 +11,9 @@ import ImageWrapper from '../components/ImageWrapper'
 import Info from '../components/Info'
 import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
+
+import LoadingContainer from './LoadingContainer'
+import Failure from '../components/Failure'
 
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
 import getByDate from '../helpers/get-by-date-bridge'
@@ -149,41 +153,54 @@ class AppContainer extends Component {
   }
 
   render() {
+    let component
+    if (this.state.isLoading) component = <LoadingContainer key="loading-key" />
+    if (this.state.isFailure) component = <Failure key="failure-key" tries={this.state.tries} />
+
+    if (!component) {
+      component =  (
+      <App key='app-key'>
+          <Nav
+            date={this.state.date}
+            showInfo={this.state.showInfo}
+            onHomeClick={this.handleHomeClick}
+            onPreviousClick={this.handlePreviousClick}
+            onShuffleClick={this.handleShuffleClick}
+            onNextClick={this.handleNextClick}
+            onToggleClick={this.handleToggleClick}
+          />
+
+          <ImageWrapper
+            imageUrl={this.state.image_hd}
+            onImageClick={this.handleImageClick}
+          />
+          <Info
+            showInfo={this.state.showInfo}
+            date={this.state.date}
+            title={this.state.title}
+            explanation={this.state.explanation}
+          />
+
+          <Overlay
+            imageUrl={this.state.image_hd}
+            showOverlay={this.state.showOverlay}
+            onOverlayClick={this.handleOverlayClick}
+          />
+
+        </App>
+      )
+    }
+
     return (
-      <App
-        tries={this.state.tries}
-        isFailure={this.state.isFailure}
-        isLoading={this.state.isLoading}
-      >
-
-        <Nav
-          date={this.state.date}
-          showInfo={this.state.showInfo}
-          onHomeClick={this.handleHomeClick}
-          onPreviousClick={this.handlePreviousClick}
-          onShuffleClick={this.handleShuffleClick}
-          onNextClick={this.handleNextClick}
-          onToggleClick={this.handleToggleClick}
-        />
-
-        <ImageWrapper
-          imageUrl={this.state.image_hd}
-          onImageClick={this.handleImageClick}
-        />
-        <Info
-          showInfo={this.state.showInfo}
-          date={this.state.date}
-          title={this.state.title}
-          explanation={this.state.explanation}
-        />
-
-        <Overlay
-          imageUrl={this.state.image_hd}
-          showOverlay={this.state.showOverlay}
-          onOverlayClick={this.handleOverlayClick}
-        />
-
-      </App>
+      <div>
+        <PreactCSSTransitionGroup
+          className='content'
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+          {component}
+        </PreactCSSTransitionGroup>
+      </div>
     )
   }
 

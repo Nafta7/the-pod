@@ -1,5 +1,5 @@
 const Settings = {
-  IMAGE_SYNC: false
+  IMAGE_SYNC: true
 }
 
 export default Settings

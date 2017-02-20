@@ -54,7 +54,8 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "preact": "^6.4.0"
+    "preact": "^6.4.0",
+    "preact-css-transition-group": "^1.1.1"
   },
   "babel": {
     "presets": [
