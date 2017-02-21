@@ -4,7 +4,8 @@ module.exports = {
     "postcss-nesting",
     "postcss-css-variables",
     "css-mqpacker",
-    "postcss-custom-media"
+    "postcss-custom-media",
+    "postcss-responsive-type"
   ],
   parser: "sugarss",
   "postcss-easy-import": {
