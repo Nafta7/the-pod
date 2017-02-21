@@ -14,6 +14,7 @@ html {
 }
 body {
   background-color: hsl(204, 47%, 32%);
+  background-image: -webkit-linear-gradient(110deg, hsl(204, 47%, 32%) 0%, hsl(253, 28%, 36%) 100%);
   background-image: linear-gradient(-20deg, hsl(204, 47%, 32%) 0%, hsl(253, 28%, 36%) 100%);
   overflow: hidden
 }
@@ -44,17 +45,27 @@ body {
 }
 .container {
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: hsl(0, 0%, 95%)
 }
 .wrapper {
   background-position: center center;
   background-size: cover;
   min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center
 }
 .nav-wrapper {
   position: absolute;
@@ -62,22 +73,31 @@ body {
   right: 0;
   width: 95%;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between
 }
 .title {
   color: hsl(0, 0%, 95%);
   font-size: 1.5em;
   margin: 0;
   line-height: 1;
-  flex-grow: 0
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0
 }
 .fade-enter {
   opacity: 0.00
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
+  -webkit-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in
 }
 .fade-leave {
@@ -85,14 +105,23 @@ body {
 }
 .fade-leave.fade-leave-active {
   opacity: 0.01;
+  -webkit-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in
 }
 .menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style: none;
-  align-items: center;
-  justify-content: center;
-  flex: 1 0 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   margin: 0;
   position: absolute;
   left: 0;
@@ -102,7 +131,9 @@ body {
 }
 .menu li {
   display: inline;
-  flex: 1
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1
 }
 .btn {
   width: 100%;
@@ -113,6 +144,7 @@ body {
   border-right-width: 0px;
   border-style: solid;
   display: inline-block;
+  -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
   font-size: 1em
 }
@@ -139,10 +171,19 @@ body {
 }
 /* Icon styles */
 .btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: row
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row
 }
 .icon {
   fill: white
@@ -159,12 +200,17 @@ body {
   bottom: 0;
   opacity: 0;
   visibility: hidden;
-  transition-duration: 0.4s
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s
 }
 .info-title {
   font-size: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between
 }
 .info-text {}
 .overlay {
@@ -176,7 +222,8 @@ body {
   width: 100%;
   height: 100%;
   z-index: 10;
-  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
   opacity: 0;
   visibility: hidden
 }
@@ -191,7 +238,8 @@ body {
   z-index: 11;
   top: 50%;
   bottom: 0;
-  transform: translate(0,-50%)
+  -webkit-transform: translate(0,-50%);
+          transform: translate(0,-50%)
 }
 .frame-image {
   position: absolute;
@@ -200,16 +248,27 @@ body {
   border: 9px solid hsl(0, 0%, 95%);
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%)
+  -webkit-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%)
 }
 .loading {
-  flex-direction: column
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column
 }
 .quotation {
   max-width: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   position: relative;
   width: 100%;
   margin-top: 2rem;
@@ -243,15 +302,29 @@ body {
   height: calc(10 * 1em);
   background: white;
   border-radius: 50%;
-  animation: pulse 1.2s ease-in-out infinite
+  -webkit-animation: pulse 1.2s ease-in-out infinite;
+          animation: pulse 1.2s ease-in-out infinite
 }
-@keyframes pulse {
+@-webkit-keyframes pulse {
   0% {
-    transform: scale(0.0)
+    -webkit-transform: scale(0.0);
+            transform: scale(0.0)
   }
   100% {
     opacity: 0;
-    transform: scale(1)
+    -webkit-transform: scale(1);
+            transform: scale(1)
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.0);
+            transform: scale(0.0)
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1)
   }
 }
 @media (min-width: 700px) {
@@ -259,14 +332,17 @@ body {
     margin-top: 1em
   }
   .menu li {
-    flex: none
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none
   }
   .btn-text {
     display: inline
   }
   .info {
     top: 50%;
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
     bottom: auto
   }
   .frame {
