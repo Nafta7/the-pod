@@ -5,7 +5,8 @@ module.exports = {
     "postcss-css-variables",
     "css-mqpacker",
     "postcss-custom-media",
-    "postcss-responsive-type"
+    "postcss-responsive-type",
+    "autoprefixer"
   ],
   parser: "sugarss",
   "postcss-easy-import": {
