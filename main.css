@@ -1,5 +1,16 @@
 html {
-  box-sizing: border-box
+  box-sizing: border-box;
+  font-size: calc(14px + 8 * ((100vw - 420px) / 860))
+}
+@media screen and (min-width: 1280px) {
+  html {
+    font-size: 22px
+  }
+}
+@media screen and (max-width: 420px) {
+  html {
+    font-size: 14px
+  }
 }
 body {
   background-color: hsl(204, 47%, 32%);
@@ -102,7 +113,8 @@ body {
   border-right-width: 0px;
   border-style: solid;
   display: inline-block;
-  transition: background-color 0.5s
+  transition: background-color 0.5s;
+  font-size: 1em
 }
 .btn.active {
   background-color: hsl(0, 0%, 12%);
@@ -142,7 +154,6 @@ body {
   background: rgba(0,0,0,0.8);
   color: hsl(0, 0%, 95%);
   padding: 1em;
-  font-size: 0.8rem;
   position: fixed;
   z-index: 1;
   bottom: 0;
@@ -151,13 +162,11 @@ body {
   transition-duration: 0.4s
 }
 .info-title {
-  font-size: 1.2em;
+  font-size: 1.5em;
   display: flex;
   justify-content: space-between
 }
-.info-text {
-  font-size: 1.0em
-}
+.info-text {}
 .overlay {
   background: rgba(0,0,0,.8);
   position: fixed;
@@ -202,20 +211,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-
-  margin-top: 4rem;
-  padding-left: 1em
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0 1.5rem 0 4rem
 }
 .quotation:before {
   content: '\201C';
   position: absolute;
-  top: 4rem;
-  left: -5rem;
-  font-size: 10em;
+  top: 2rem;
+  left: 1.1rem;
+  font-size: 5em;
   line-height: 0
 }
 .quote {
-  font-size: 2em;
+  font-size: 1.5em;
   line-height: 1.45;
   margin: 0;
   padding: 0;
@@ -258,11 +267,7 @@ body {
   .info {
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.2rem;
     bottom: auto
-  }
-  .info-title {
-    font-size: 1.5em
   }
   .frame {
     max-height: 80%;
