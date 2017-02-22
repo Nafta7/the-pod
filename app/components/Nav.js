@@ -95,7 +95,7 @@ const Nav = (props) => {
               </svg>
             </span>
             <span class="btn-text">
-              Toggle
+              Info
             </span>
           </div>
         </button>
