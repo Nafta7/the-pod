@@ -11,6 +11,7 @@ import ImageWrapper from '../components/ImageWrapper'
 import Info from '../components/Info'
 import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
+import Footer from '../components/Footer'
 
 import LoadingContainer from './LoadingContainer'
 import Failure from '../components/Failure'
@@ -158,8 +159,8 @@ class AppContainer extends Component {
     if (this.state.isFailure) component = <Failure key="failure-key" tries={this.state.tries} />
 
     if (!component) {
-      component =  (
-      <App key='app-key'>
+      component = (
+        <App key='app-key'>
           <Nav
             date={this.state.date}
             showInfo={this.state.showInfo}
@@ -174,11 +175,16 @@ class AppContainer extends Component {
             imageUrl={this.state.image_hd}
             onImageClick={this.handleImageClick}
           />
+          
           <Info
+            showInfo={this.state.showInfo}
+            explanation={this.state.explanation}
+          />
+
+          <Footer
             showInfo={this.state.showInfo}
             date={this.state.date}
             title={this.state.title}
-            explanation={this.state.explanation}
           />
 
           <Overlay

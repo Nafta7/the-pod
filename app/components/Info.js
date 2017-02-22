@@ -7,14 +7,6 @@ const Info = props => {
 
   return (
     <div class={infoClasses.join(' ')}>
-      <h1 class="info-title">
-        <span class="info-title-text">
-          {props.title}
-        </span>
-        <span class="info-title-date">
-          {displayDate(props.date)}
-        </span>
-      </h1>
       <p class="info-text">
         {props.explanation}
       </p>
