@@ -2,10 +2,10 @@
 
 ## Overview
 
-> #### "Astronomy Picture of the Day (APOD) is a website provided by NASA. Each day a different image or photograph of our universe is featured, along with a brief explanation written by a professional astronomer."
+> #### "Astronomy Picture of the Day ([APOD](https://apod.nasa.gov)) is a website provided by NASA. Each day a different image or photograph of our universe is featured, along with a brief explanation written by a professional astronomer."
 >[Wikipedia](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day)
 
- **The Pod** is a reimagining of the APOD using modern technology.
+ **The Pod** is a reimagining of the APOD UI using modern technology.
 
 ## Features
 
@@ -23,4 +23,6 @@ The Pod  is distributed under the terms of the BSD-2.
 ## Third-party resources
 
 [Material icons](https://github.com/google/material-design-icons/
-) - Apache License Version 2.0
+) - Provides the icons on the menu. | Apache 2.0
+
+[NASA APOD API](https://api.nasa.gov/api.html#apod) - Provides the images displayed.
