@@ -4,11 +4,11 @@
   background-color: var(--black)
   color: var(--white)
   padding: 0.8em 1.5em
-  border-right-width: 0px
-  border-style: solid
-  display: inline-block
   transition: background-color 0.5s
   font-size: 1em
+  display: flex
+  align-items: center
+  justify-content: center
 
   &.active
     background-color: var(--light-black)
@@ -33,15 +33,10 @@
     border-color: white
 
 
-// Icon styles
-.btn-container
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-flow: row
-
 .icon
   fill: white
+  width: 1.5em
+  height: 1.5em
 
 .btn-text
   display: none
