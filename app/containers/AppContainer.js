@@ -44,6 +44,7 @@ class AppContainer extends Component {
   }
 
   makeRequest(currentDate, type){
+
     let date
 
     switch(type) {
@@ -67,9 +68,13 @@ class AppContainer extends Component {
         break
     }
 
-    getByDate(date)
-      .then(this.receive.bind(this, date))
-      .catch(err => this.handleRejection.bind(this, err, date, type)())
+    this.setState({ 
+      showInfo: false
+    }, () => {
+      getByDate(date)
+        .then(this.receive.bind(this, date))
+        .catch(err => this.handleRejection.bind(this, err, date, type)())
+    })
   }
 
   receive(date, data){
@@ -155,8 +160,13 @@ class AppContainer extends Component {
 
   render() {
     let component
-    if (this.state.isLoading) component = <LoadingContainer key="loading-key" />
-    if (this.state.isFailure) component = <Failure key="failure-key" tries={this.state.tries} />
+    if (this.state.isLoading) {
+      component = <LoadingContainer key="loading-key" />
+    }
+    if (this.state.isFailure) {
+      component = <Failure key="failure-key" tries={this.state.tries} />
+    }
+
 
     if (!component) {
       component = (
