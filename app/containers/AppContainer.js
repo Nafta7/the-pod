@@ -21,6 +21,8 @@ import getByDate from '../helpers/get-by-date-bridge'
 import shuffleDate from '../helpers/shuffle-date'
 import tomorrow from '../helpers/tomorrow'
 import yesterday from '../helpers/yesterday'
+import isDateSafe from '../helpers/is-date-safe'
+
 const downloadImage = new Image()
 
 class AppContainer extends Component {
@@ -68,7 +70,7 @@ class AppContainer extends Component {
         break
     }
 
-    this.setState({ 
+    this.setState({
       showInfo: false
     }, () => {
       getByDate(date)
@@ -78,10 +80,16 @@ class AppContainer extends Component {
   }
 
   receive(date, data){
+    let imageUrl
+
+    if (isDateSafe(date))
+      imageUrl = data.hdurl
+    else
+      imageUrl = data.url
+
     const update = () => {
       this.setState({
-        image: data.url,
-        image_hd: data.hdurl,
+        imageUrl: imageUrl,
         title: data.title,
         explanation: data.explanation,
         date: date,
@@ -93,7 +101,7 @@ class AppContainer extends Component {
 
     if (Settings.IMAGE_SYNC) {
       downloadImage.onload = update
-      downloadImage.src = data.hdurl
+      downloadImage.src = imageUrl
     } else {
       update()
     }
@@ -182,10 +190,10 @@ class AppContainer extends Component {
           />
 
           <ImageWrapper
-            imageUrl={this.state.image_hd}
+            imageUrl={this.state.imageUrl}
             onImageClick={this.handleImageClick}
           />
-          
+
           <Info
             showInfo={this.state.showInfo}
             explanation={this.state.explanation}
@@ -198,7 +206,7 @@ class AppContainer extends Component {
           />
 
           <Overlay
-            imageUrl={this.state.image_hd}
+            imageUrl={this.state.imageUrl}
             showOverlay={this.state.showOverlay}
             onOverlayClick={this.handleOverlayClick}
           />
