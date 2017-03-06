@@ -177,7 +177,7 @@ a, button {
 .btn:focus {
   outline: none
 }
-.btn.btn[disabled] {
+.btn[disabled] {
   opacity: 0.3
 }
 .non-touch {}
@@ -263,11 +263,14 @@ a, button {
   padding-right: 0.5rem;
   text-align: center;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto
 }
 .footer-date {
-  padding-left: 0.5rem
+  padding-left: 0.5rem;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto
 }
 .overlay {
   background: rgba(0,0,0,.8);
