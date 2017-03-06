@@ -24,57 +24,55 @@ const Nav = (props) => {
   return (
     <ul class="menu">
       <li>
-        <button type="submit" class="btn"
+        <a class="btn"
           disabled={disablePrevious}
           onClick={props.onHomeClick}>
           <HomeIcon />
           <span class="btn-text">
             The Pod
           </span>
-        </button>
+        </a>
       </li>
 
       <li>
-        <button
-          type="submit" class="btn"
+        <a class="btn"
           disabled={disablePrevious}
           onClick={props.onPreviousClick}>
           <PreviousIcon />
           <span class="btn-text">
             Previous
           </span>
-        </button>
+        </a>
       </li>
       <li>
-        <button type="submit" class="btn"
+        <a class="btn"
           onClick={props.onShuffleClick}>
           <ShuffleIcon />
           <span class="btn-text">
             Shuffle
           </span>
-        </button>
+        </a>
       </li>
 
       <li>
-        <button type="submit" class="btn"
+        <a class="btn"
           disabled={disableNext}
           onClick={props.onNextClick}>
           <NextIcon />
           <span class="btn-text">
             Next
           </span>
-        </button>
+        </a>
       </li>
 
       <li>
-        <button type="submit"
-          class={toggleButtonClasses.join(' ')}
+        <a class={toggleButtonClasses.join(' ')}
           onClick={props.onToggleClick}>
           <InfoIcon />
           <span class="btn-text">
             Info
           </span>
-        </button>
+        </a>
       </li>
     </ul>
   )
