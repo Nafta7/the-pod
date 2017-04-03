@@ -4,6 +4,7 @@ const key = require('../../credentials').api_key
 
 const baseUrl = 'https://api.nasa.gov/planetary/apod?'
 const keyParam = `api_key=${key}`
+const protocolReg = /^[^:]+(?=:\/\/)/
 
 function getByDate(date){
   const newDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
@@ -20,8 +21,8 @@ function getByDate(date){
           new Error(`media type invalid. type: ${data.media_type}`)
         )
       }
-      data.hdurl = data.hdurl.replace('http', 'https')
-      data.url = data.url.replace('http', 'https')
+      data.hdurl = data.hdurl.replace(protocolReg, 'https')
+      data.url = data.url.replace(protocolReg, 'https')
       return data
     })
     .catch(err => {
