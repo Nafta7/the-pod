@@ -43,8 +43,8 @@
     "isomorphic-fetch": "^2.2.1",
     "json": "^9.0.4",
     "node-fetch": "^1.6.3",
-    "postcss-cli": "^2.6.0",
-    "postcss-css-variables": "^0.6.0",
+    "postcss-cli": "^3.2.0",
+    "postcss-css-variables": "^0.7.0",
     "postcss-custom-media": "^5.0.1",
     "postcss-easy-import": "^2.0.0",
     "postcss-nesting": "^2.3.1",
@@ -56,8 +56,8 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "preact": "^7.2.0",
-    "preact-css-transition-group": "^1.1.1"
+    "preact": "^8.1.0",
+    "preact-css-transition-group": "^1.2.0"
   },
   "babel": {
     "presets": [
