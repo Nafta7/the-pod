@@ -25,7 +25,6 @@ html {
 }
 body {
   background-color: hsl(204, 47%, 32%);
-  background-image: -webkit-linear-gradient(110deg, hsl(204, 47%, 32%) 0%, hsl(253, 28%, 36%) 100%);
   background-image: linear-gradient(-20deg, hsl(204, 47%, 32%) 0%, hsl(253, 28%, 36%) 100%);
   overflow: hidden;
   margin: 0
@@ -106,7 +105,6 @@ a, button {
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in
 }
 .fade-leave {
@@ -114,7 +112,6 @@ a, button {
 }
 .fade-leave.fade-leave-active {
   opacity: 0.01;
-  -webkit-transition: opacity 500ms ease-in;
   transition: opacity 500ms ease-in
 }
 .menu {
@@ -157,7 +154,6 @@ a, button {
   background-color: hsl(0, 0%, 5%);
   color: hsl(0, 0%, 95%);
   padding: 0.8rem 1.1rem;
-  -webkit-transition: background-color 0.5s;
   transition: background-color 0.5s;
   font-size: 1em;
   display: -webkit-box;
@@ -217,8 +213,7 @@ a, button {
   bottom: auto;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  -webkit-transition-duration: 0.4s;
-          transition-duration: 0.4s;
+  transition-duration: 0.4s;
   z-index: 1
 }
 .info-text {
@@ -240,8 +235,7 @@ a, button {
           justify-content: center;
   width: 100%;
   margin-bottom: 1rem;
-  -webkit-transition-duration: 0.4s;
-          transition-duration: 0.4s
+  transition-duration: 0.4s
 }
 .footer-inner {
   background-color: hsl(0, 0%, 5%);
@@ -281,8 +275,7 @@ a, button {
   width: 100%;
   height: 100%;
   z-index: 10;
-  -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
+  transition-duration: 0.5s;
   opacity: 0;
   visibility: hidden
 }
