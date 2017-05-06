@@ -142,12 +142,6 @@ a, button {
       -ms-flex: 1;
           flex: 1
 }
-.menu li:not(:last-of-type) {
-  border-width: 0;
-  border-right-width: 2px;
-  border-color: hsl(0, 0%, 10%);
-  border-style: solid
-}
 .btn {
   width: 100%;
   border-width: 0;
