@@ -1,5 +1,7 @@
 # TODO
 
+- [x] Supress render w/ component transitions.
+
 - [ ] Improve readme.
 
 - [ ] Make a nicier loading animation.
