@@ -1,0 +1,13 @@
+.pulse
+  width: calc(var(--loader-size) * 1em)
+  height: calc(var(--loader-size) * 1em)
+  background: white
+  border-radius: 50%
+  animation: pulse 1.2s ease-in-out infinite
+
+@keyframes pulse
+  0%
+    transform: scale(0.0)
+  100%
+    opacity: 0
+    transform: scale(1)

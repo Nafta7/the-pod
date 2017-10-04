@@ -1,14 +1,17 @@
-.loading
+.frame-group
+  display: flex
   flex-direction: column
+  align-items: center
+  justify-content: center
 
 .quotation
+  font-family: var(--font-serif)
   max-width: var(--text-width)
   display: flex
   flex-direction: column
   justify-content: space-between
   position: relative
   width: 100%
-  margin-top: 2rem
   padding: 0 1.5rem 0 4rem
 
   &:before
@@ -33,17 +36,3 @@
 
   &:before
     content: "\2014 \2009"
-
-.pulse
-  width: calc(var(--loader-size) * 1em)
-  height: calc(var(--loader-size) * 1em)
-  background: white
-  border-radius: 50%
-  animation: pulse 1.2s ease-in-out infinite
-
-@keyframes pulse
-  0%
-    transform: scale(0.0)
-  100%
-    opacity: 0
-    transform: scale(1)
