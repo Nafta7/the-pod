@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-// import PreactCSSTransitionGroup from 'preact-css-transition-group'
+import PreactCSSTransitionGroup from 'preact-css-transition-group'
 
 import AppConstants from '../constants/AppConstants'
 import ActionType from '../constants/ActionType'
@@ -16,8 +16,7 @@ import Footer from '../components/Footer'
 import LoadingContainer from './LoadingContainer'
 import Failure from '../components/Failure'
 
-import disableHoverEffectsOnMobile
-  from '../helpers/disable-hover-effects-on-mobile'
+import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
 import getByDate from '../helpers/get-by-date-bridge'
 import shuffleDate from '../helpers/shuffle-date'
 import tomorrow from '../helpers/tomorrow'
@@ -184,56 +183,6 @@ class AppContainer extends Component {
 
   render() {
     let component
-    if (this.state.isLoading) component = <LoadingContainer />
-    if (this.state.isFailure) component = <Failure tries={this.state.tries} />
-
-    if (!component) {
-      component = (
-        <App>
-          <Nav
-            date={this.state.date}
-            showInfo={this.state.showInfo}
-            onHomeClick={this.handleHomeClick}
-            onPreviousClick={this.handlePreviousClick}
-            onShuffleClick={this.handleShuffleClick}
-            onNextClick={this.handleNextClick}
-            onToggleClick={this.handleToggleClick}
-          />
-
-          <ImageWrapper
-            imageUrl={this.state.imageUrl}
-            onImageClick={this.handleImageClick}
-          />
-
-          <Info
-            showInfo={this.state.showInfo}
-            explanation={this.state.explanation}
-          />
-
-          <Footer
-            showInfo={this.state.showInfo}
-            date={this.state.date}
-            title={this.state.title}
-          />
-
-          <Overlay
-            imageUrl={this.state.imageUrl}
-            showOverlay={this.state.showOverlay}
-            onOverlayClick={this.handleOverlayClick}
-          />
-
-        </App>
-      )
-    }
-
-    return component
-  }
-
-  /* Render using CSSTransitionGroup component
-  Will be left out until the issue w/ the
-  component is solved.
-  render() {
-    let component
     if (this.state.isLoading) {
       component = <LoadingContainer key="loading-key" />
     }
@@ -275,7 +224,6 @@ class AppContainer extends Component {
             showOverlay={this.state.showOverlay}
             onOverlayClick={this.handleOverlayClick}
           />
-
         </App>
       )
     }
@@ -283,9 +231,8 @@ class AppContainer extends Component {
     return (
       <div>
         <PreactCSSTransitionGroup
-          className="content"
           transitionName="fade"
-          transitionEnterTimeout={500}
+          transitionEnterTimeout={1000}
           transitionLeaveTimeout={500}
         >
           {component}
@@ -293,7 +240,6 @@ class AppContainer extends Component {
       </div>
     )
   }
-  */
 
   componentWillMount() {
     disableHoverEffectsOnMobile(window)
