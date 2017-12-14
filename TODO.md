@@ -1,6 +1,6 @@
 # TODO
 
-- [x] Supress render w/ component transitions.
+- [ ] Add configuration option to select SYNC image loading.
 
 - [ ] Improve readme.
 
