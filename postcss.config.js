@@ -1,7 +1,5 @@
-const sourceMaps = process.env.NODE_ENV !== 'production'
-
 module.exports = ctx => ({
-  map: ctx.options.map,
+  map: ctx.env === 'development' ? ctx.map : false,
   parser: ctx.file.extname === '.sss' ? 'sugarss' : false,
   plugins: {
     'postcss-easy-import': {
@@ -12,6 +10,12 @@ module.exports = ctx => ({
     'css-mqpacker': {},
     'postcss-custom-media': {},
     'postcss-responsive-type': {},
-    autoprefixer: {}
+    autoprefixer: {},
+    cssnano:
+      ctx.env === 'production'
+        ? {
+            preset: 'default'
+          }
+        : false
   }
 })
