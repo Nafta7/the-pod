@@ -1,5 +1,5 @@
 module.exports = ctx => ({
-  map: ctx.env === 'development' ? ctx.map : false,
+  map: ctx.env === 'development' ? ctx.options.map : false,
   parser: ctx.file.extname === '.sss' ? 'sugarss' : false,
   plugins: {
     'postcss-easy-import': {
