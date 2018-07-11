@@ -4,7 +4,7 @@ import PreactCSSTransitionGroup from 'preact-css-transition-group'
 import AppConstants from '../constants/AppConstants'
 import ActionType from '../constants/ActionType'
 import DaySort from '../constants/DaySort'
-import Settings from '../constants/Settings'
+import SettingType from '../constants/SettingType'
 
 import App from '../components/App'
 import ImageWrapper from '../components/ImageWrapper'
@@ -25,12 +25,19 @@ import isDateSafe from '../helpers/is-date-safe'
 
 const downloadImage = new Image()
 
+const defaultSettings = {
+  isAsync: false,
+  isHd: false
+}
+
 class AppContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showInfo: false,
       showOverlay: false,
+      showSettings: false,
+      settings: defaultSettings,
       tries: 0,
       isFailure: false,
       isLoading: true
@@ -43,6 +50,8 @@ class AppContainer extends Component {
     this.handleHomeClick = this.handleHomeClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
+    this.handleMoreClick = this.handleMoreClick.bind(this)
+    this.setSetting = this.setSetting.bind(this)
   }
 
   makeRequest(currentDate, type) {
@@ -82,10 +91,13 @@ class AppContainer extends Component {
   }
 
   receive(date, data) {
-    let imageUrl
+    let imageUrl = this.state.settings.isHd
+      ? data.hdurl
+      : data.url
 
-    if (isDateSafe(date)) imageUrl = data.hdurl
-    else imageUrl = data.url
+    imageUrl = isDateSafe(date)
+      ? imageUrl = data.hdurl
+      : imageUrl = data.url
 
     const update = () => {
       this.setState({
@@ -99,11 +111,11 @@ class AppContainer extends Component {
       })
     }
 
-    if (Settings.IMAGE_SYNC) {
+    if (this.state.settings.isAsync) {
+      update()
+    } else {
       downloadImage.onload = update
       downloadImage.src = imageUrl
-    } else {
-      update()
     }
   }
 
@@ -181,6 +193,12 @@ class AppContainer extends Component {
     })
   }
 
+  handleMoreClick(e) {
+    this.setState({
+      showSettings: !this.state.showSettings
+    })
+  }
+
   render() {
     let component
     if (this.state.isLoading) {
@@ -196,11 +214,15 @@ class AppContainer extends Component {
           <Nav
             date={this.state.date}
             showInfo={this.state.showInfo}
+            showSettings={this.state.showSettings}
             onHomeClick={this.handleHomeClick}
             onPreviousClick={this.handlePreviousClick}
             onShuffleClick={this.handleShuffleClick}
             onNextClick={this.handleNextClick}
             onToggleClick={this.handleToggleClick}
+            onMoreClick={this.handleMoreClick}
+            setSetting={this.setSetting}
+            settings={this.state.settings}
           />
 
           <ImageWrapper
@@ -241,9 +263,37 @@ class AppContainer extends Component {
     )
   }
 
-  componentWillMount() {
-    disableHoverEffectsOnMobile(window)
+  setSetting(settingType, value) {
+    localStorage.setItem(settingType.toString(), value)
+    const newSettings = this.state.settings
+    newSettings[settingType] = value
 
+    this.setState({
+      settings: newSettings
+    })
+  }
+
+  loadSettings() {
+    const isAsync = localStorage.getItem(SettingType.IS_ASYNC.toString()) !== null
+      ? JSON.parse(localStorage.getItem(SettingType.IS_ASYNC.toString()))
+      : defaultSettings.isAsync
+    const isHd = localStorage.getItem(SettingType.IS_HD.toString()) !== null
+     ? JSON.parse(localStorage.getItem(SettingType.IS_HD.toString()))
+     : defaultSettings.isHd
+
+    const newSettings = {
+      isAsync,
+      isHd
+    }
+
+    this.setState({
+      settings: newSettings
+    })
+  }
+
+  componentWillMount() {
+    this.loadSettings()
+    disableHoverEffectsOnMobile(window)
     this.makeRequest(DaySort.NEWEST, ActionType.NEWEST)
   }
 }
