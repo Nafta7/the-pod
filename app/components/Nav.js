@@ -2,11 +2,14 @@ import { h } from 'preact'
 import DaySort from '../constants/DaySort'
 import isSameDay from '../helpers/is-same-day'
 
+import Settings from './Settings'
+
 import HomeIcon from '../icons/HomeIcon'
 import PreviousIcon from '../icons/PreviousIcon'
 import ShuffleIcon from '../icons/ShuffleIcon'
 import NextIcon from '../icons/NextIcon'
 import InfoIcon from '../icons/InfoIcon'
+import SettingsIcon from '../icons/SettingsIcon'
 
 const Nav = (props) => {
   let toggleButtonClasses = ['btn']
@@ -67,12 +70,23 @@ const Nav = (props) => {
 
       <li>
         <a class={toggleButtonClasses.join(' ')}
-          onClick={props.onToggleClick}>
+           onClick={props.onToggleClick}>
           <InfoIcon />
           <span class="btn-text">
             Info
           </span>
         </a>
+      </li>
+
+      <li class={`menu-item-settings`}>
+        <a class={`btn ${props.showSettings ? 'btn-active' : ''}`}
+           onClick={props.onMoreClick}>
+          <SettingsIcon />
+        </a>
+          <Settings active={props.showSettings}
+                    setSetting={props.setSetting}
+                    settings={props.settings}
+          />
       </li>
     </ul>
   )
