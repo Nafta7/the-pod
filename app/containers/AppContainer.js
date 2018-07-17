@@ -50,7 +50,7 @@ class AppContainer extends Component {
     this.handleHomeClick = this.handleHomeClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
-    this.handleMoreClick = this.handleMoreClick.bind(this)
+    this.handleSettingsClick = this.handleSettingsClick.bind(this)
     this.setSetting = this.setSetting.bind(this)
   }
 
@@ -91,13 +91,11 @@ class AppContainer extends Component {
   }
 
   receive(date, data) {
-    let imageUrl = this.state.settings.isHd
-      ? data.hdurl
-      : data.url
+    let imageUrl = this.state.settings.isHd ? data.hdurl : data.url
 
     imageUrl = isDateSafe(date)
-      ? imageUrl = data.hdurl
-      : imageUrl = data.url
+      ? (imageUrl = data.hdurl)
+      : (imageUrl = data.url)
 
     const update = () => {
       this.setState({
@@ -193,7 +191,7 @@ class AppContainer extends Component {
     })
   }
 
-  handleMoreClick(e) {
+  handleSettingsClick(e) {
     this.setState({
       showSettings: !this.state.showSettings
     })
@@ -220,11 +218,10 @@ class AppContainer extends Component {
             onShuffleClick={this.handleShuffleClick}
             onNextClick={this.handleNextClick}
             onToggleClick={this.handleToggleClick}
-            onMoreClick={this.handleMoreClick}
+            onSettingsClick={this.handleSettingsClick}
             setSetting={this.setSetting}
             settings={this.state.settings}
           />
-
           <ImageWrapper
             imageUrl={this.state.imageUrl}
             onImageClick={this.handleImageClick}
@@ -274,12 +271,14 @@ class AppContainer extends Component {
   }
 
   loadSettings() {
-    const isAsync = localStorage.getItem(SettingType.IS_ASYNC.toString()) !== null
-      ? JSON.parse(localStorage.getItem(SettingType.IS_ASYNC.toString()))
-      : defaultSettings.isAsync
-    const isHd = localStorage.getItem(SettingType.IS_HD.toString()) !== null
-     ? JSON.parse(localStorage.getItem(SettingType.IS_HD.toString()))
-     : defaultSettings.isHd
+    const isAsync =
+      localStorage.getItem(SettingType.IS_ASYNC.toString()) !== null
+        ? JSON.parse(localStorage.getItem(SettingType.IS_ASYNC.toString()))
+        : defaultSettings.isAsync
+    const isHd =
+      localStorage.getItem(SettingType.IS_HD.toString()) !== null
+        ? JSON.parse(localStorage.getItem(SettingType.IS_HD.toString()))
+        : defaultSettings.isHd
 
     const newSettings = {
       isAsync,
