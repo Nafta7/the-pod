@@ -49,7 +49,11 @@ const Nav = props => {
       </li>
 
       <li>
-        <a class="btn" disabled={disableNext} onClick={props.onNextClick}>
+        <a
+          class="btn"
+          disabled={disableNext}
+          onClick={e => (disableNext ? null : props.onNextClick(e))}
+        >
           <NextIcon />
           <span class="btn-text">Next</span>
         </a>
