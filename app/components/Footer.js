@@ -1,10 +1,19 @@
 import { h } from 'preact'
-import displayDate from '../helpers/display-date'
 import InfoIcon from '../icons/InfoIcon'
+import DescriptionIcon from '../icons/DescriptionIcon'
 
-function Footer({ title, date, showTitle, onTitleClick }) {
+function Footer({
+  title,
+  date,
+  showTitle,
+  showInfo,
+  onTitleClick,
+  onToggleClick
+}) {
   const footerVisibility = showTitle ? 'show' : ''
-  const footerDate = date ? displayDate(date) : ''
+
+  let toggleButtonClasses = ['btn']
+  if (showInfo) toggleButtonClasses.push('active')
 
   return (
     <footer class="footer-container">
@@ -16,8 +25,13 @@ function Footer({ title, date, showTitle, onTitleClick }) {
       <div class={`footer ${footerVisibility}`}>
         <div class="footer-inner">
           <span class="footer-title">{title}</span>
-          <span class="footer-date">{footerDate}</span>
         </div>
+      </div>
+      <div class="footer-icon">
+        <a class={toggleButtonClasses.join(' ')} onClick={onToggleClick}>
+          <DescriptionIcon />
+          <span class="btn-text">Details</span>
+        </a>
       </div>
     </footer>
   )

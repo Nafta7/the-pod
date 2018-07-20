@@ -1,6 +1,7 @@
 import { h } from 'preact'
 import DaySort from '../constants/DaySort'
 import isSameDay from '../helpers/is-same-day'
+import displayDate from '../helpers/display-date'
 
 import Settings from './Settings'
 
@@ -8,16 +9,11 @@ import HomeIcon from '../icons/HomeIcon'
 import PreviousIcon from '../icons/PreviousIcon'
 import ShuffleIcon from '../icons/ShuffleIcon'
 import NextIcon from '../icons/NextIcon'
-
-import TitleIcon from '../icons/TitleIcon'
-
 import SettingsIcon from '../icons/SettingsIcon'
 
 const Nav = props => {
-  let toggleButtonClasses = ['btn']
-  if (props.showInfo) toggleButtonClasses.push('active')
-
   let date = props.date
+  const footerDate = date ? displayDate(date) : ''
   let disableNext = false,
     disablePrevious = false
 
@@ -43,10 +39,10 @@ const Nav = props => {
           <span class="btn-text">Previous</span>
         </a>
       </li>
+
       <li>
-        <a class="btn" onClick={props.onShuffleClick}>
-          <ShuffleIcon />
-          <span class="btn-text">Shuffle</span>
+        <a class="btn">
+          <span class="">{footerDate}</span>
         </a>
       </li>
 
@@ -62,9 +58,9 @@ const Nav = props => {
       </li>
 
       <li>
-        <a class={toggleButtonClasses.join(' ')} onClick={props.onToggleClick}>
-          <TitleIcon />
-          <span class="btn-text">Details</span>
+        <a class="btn" onClick={props.onShuffleClick}>
+          <ShuffleIcon />
+          <span class="btn-text">Shuffle</span>
         </a>
       </li>
 

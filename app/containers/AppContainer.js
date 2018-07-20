@@ -243,13 +243,11 @@ class AppContainer extends Component {
       <div>
         <Nav
           date={this.state.date}
-          showInfo={this.state.showInfo}
           showSettings={this.state.showSettings}
           onHomeClick={this.handleHomeClick}
           onPreviousClick={this.handlePreviousClick}
           onShuffleClick={this.handleShuffleClick}
           onNextClick={this.handleNextClick}
-          onToggleClick={this.handleToggleClick}
           onSettingsClick={this.handleSettingsClick}
           setSetting={this.setSetting}
           settings={this.state.settings}
@@ -264,7 +262,9 @@ class AppContainer extends Component {
         <div>
           <Footer
             showTitle={this.state.showTitle}
+            showInfo={this.state.showInfo}
             onTitleClick={this.handleTitleClick}
+            onToggleClick={this.handleToggleClick}
             date={this.state.date}
             title={this.state.title}
           />
