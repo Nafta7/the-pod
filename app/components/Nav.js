@@ -8,7 +8,9 @@ import HomeIcon from '../icons/HomeIcon'
 import PreviousIcon from '../icons/PreviousIcon'
 import ShuffleIcon from '../icons/ShuffleIcon'
 import NextIcon from '../icons/NextIcon'
-import InfoIcon from '../icons/InfoIcon'
+
+import TitleIcon from '../icons/TitleIcon'
+
 import SettingsIcon from '../icons/SettingsIcon'
 
 const Nav = props => {
@@ -61,8 +63,8 @@ const Nav = props => {
 
       <li>
         <a class={toggleButtonClasses.join(' ')} onClick={props.onToggleClick}>
-          <InfoIcon />
-          <span class="btn-text">Info</span>
+          <TitleIcon />
+          <span class="btn-text">Details</span>
         </a>
       </li>
 

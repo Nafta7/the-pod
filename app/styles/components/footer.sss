@@ -1,22 +1,39 @@
-.footer
-  font-size: 1.4em
+.footer-container
   position: absolute
-  visibility: hidden
-  opacity: 0
-  bottom: 0
+  bottom: 1em
+  left: 0
+  color: var(--white)
   display: flex
   justify-content: center
-  width: 100%
-  margin-bottom: 1rem
-  transition-duration: 0.4s
+  align-items: stretch
+  /* width: 100% */
+  margin: 0 auto
+  transition: all 0.5s linear
+
+  @media (--small-viewport)
+    left: 1em
+
+.footer-icon
+  z-index: 10
+  display: flex
+
+.footer
+  font-size: 1.4em
+  opacity: 0
+  display: flex
+  transform: translateX(-7%)
+  transition: transform 0.2s ease-in-out, opacity 0.2s linear
+
+  &.show
+    transform: translateX(0%)
+    opacity: 1
 
 .footer-inner
   background-color: var(--black)
-  color: var(--white)
   justify-content: center
   align-items: center
   display: flex
-  max-width: 95%
+  width: 100%
   padding: 0.5rem 1rem
 
 .footer-title
