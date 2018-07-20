@@ -37,6 +37,7 @@ class AppContainer extends Component {
       showInfo: false,
       showOverlay: false,
       showSettings: false,
+      showTitle: false,
       settings: defaultSettings,
       tries: 0,
       isFailure: false,
@@ -46,6 +47,7 @@ class AppContainer extends Component {
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
     this.handleNextClick = this.handleNextClick.bind(this)
     this.handleToggleClick = this.handleToggleClick.bind(this)
+    this.handleTitleClick = this.handleTitleClick.bind(this)
     this.handleShuffleClick = this.handleShuffleClick.bind(this)
     this.handleHomeClick = this.handleHomeClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
@@ -97,14 +99,17 @@ class AppContainer extends Component {
       ? (imageUrl = data.hdurl)
       : (imageUrl = data.url)
 
+    this.setState({
+      title: data.title,
+      explanation: data.explanation,
+      date: date,
+      tries: 0,
+      isFailure: false
+    })
+
     const update = () => {
       this.setState({
         imageUrl: imageUrl,
-        title: data.title,
-        explanation: data.explanation,
-        date: date,
-        tries: 0,
-        isFailure: false,
         isLoading: false
       })
     }
@@ -175,6 +180,12 @@ class AppContainer extends Component {
     })
   }
 
+  handleTitleClick() {
+    this.setState({
+      showTitle: !this.state.showTitle
+    })
+  }
+
   handleImageClick(e) {
     e.preventDefault()
 
@@ -209,19 +220,6 @@ class AppContainer extends Component {
     if (!component) {
       component = (
         <App key="app-key">
-          <Nav
-            date={this.state.date}
-            showInfo={this.state.showInfo}
-            showSettings={this.state.showSettings}
-            onHomeClick={this.handleHomeClick}
-            onPreviousClick={this.handlePreviousClick}
-            onShuffleClick={this.handleShuffleClick}
-            onNextClick={this.handleNextClick}
-            onToggleClick={this.handleToggleClick}
-            onSettingsClick={this.handleSettingsClick}
-            setSetting={this.setSetting}
-            settings={this.state.settings}
-          />
           <ImageWrapper
             imageUrl={this.state.imageUrl}
             onImageClick={this.handleImageClick}
@@ -230,12 +228,6 @@ class AppContainer extends Component {
           <Info
             showInfo={this.state.showInfo}
             explanation={this.state.explanation}
-          />
-
-          <Footer
-            showInfo={this.state.showInfo}
-            date={this.state.date}
-            title={this.state.title}
           />
 
           <Overlay
@@ -249,6 +241,19 @@ class AppContainer extends Component {
 
     return (
       <div>
+        <Nav
+          date={this.state.date}
+          showInfo={this.state.showInfo}
+          showSettings={this.state.showSettings}
+          onHomeClick={this.handleHomeClick}
+          onPreviousClick={this.handlePreviousClick}
+          onShuffleClick={this.handleShuffleClick}
+          onNextClick={this.handleNextClick}
+          onToggleClick={this.handleToggleClick}
+          onSettingsClick={this.handleSettingsClick}
+          setSetting={this.setSetting}
+          settings={this.state.settings}
+        />
         <PreactCSSTransitionGroup
           transitionName="fade"
           transitionEnterTimeout={1000}
@@ -256,6 +261,14 @@ class AppContainer extends Component {
         >
           {component}
         </PreactCSSTransitionGroup>
+        <div>
+          <Footer
+            showTitle={this.state.showTitle}
+            onTitleClick={this.handleTitleClick}
+            date={this.state.date}
+            title={this.state.title}
+          />
+        </div>
       </div>
     )
   }
