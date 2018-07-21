@@ -11,7 +11,7 @@ class LoadingContainer extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount(props) {
     const quotation = quotations[randInt(0, quotations.length - 1)]
     this.setState({
       quotation: quotation
@@ -19,11 +19,7 @@ class LoadingContainer extends Component {
   }
 
   render() {
-    return (
-      <Loading
-        quotation={this.state.quotation}
-       />
-    )
+    return <Loading quotation={this.state.quotation} />
   }
 }
 
