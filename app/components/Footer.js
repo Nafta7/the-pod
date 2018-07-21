@@ -13,7 +13,7 @@ function Footer({
   return (
     <footer class="footer-container">
       <div class="footer-icon">
-        <a class="btn" onClick={onTitleClick}>
+        <a class={`btn ${showTitle ? 'active' : ''}`} onClick={onTitleClick}>
           <TitleIcon />
           <span class="btn-text">Title</span>
         </a>
