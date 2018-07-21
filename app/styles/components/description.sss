@@ -16,12 +16,15 @@
   z-index: 1
 
 .description-text
-  max-width: var(--text-width)
-  padding-right: 1rem
   overflow-y: auto
 
   @media (--only-small-viewport)
-    max-height: 225px
+    max-width: var(--text-width)
+    max-height: 50vh
 
   @media (--small-viewport)
+    max-width: var(--text-width-small)
     max-height: 60vh
+
+  @media (--medium-viewport)
+    max-width: var(--text-width-medium)
