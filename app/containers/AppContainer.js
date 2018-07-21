@@ -36,8 +36,8 @@ class AppContainer extends Component {
     this.state = {
       showOverlay: false,
       showSettings: false,
-      showTitle: false,
       showDescription: false,
+      showTitle: true,
       settings: defaultSettings,
       tries: 0,
       isFailure: false,
@@ -77,16 +77,11 @@ class AppContainer extends Component {
         break
     }
 
-    this.setState(
-      {
-        // showDescription: false
-      },
-      () => {
-        getByDate(date)
-          .then(this.receive.bind(this, date))
-          .catch(err => this.handleRejection.bind(this, err, date, type)())
-      }
-    )
+    this.setState({}, () => {
+      getByDate(date)
+        .then(this.receive.bind(this, date))
+        .catch(err => this.handleRejection.bind(this, err, date, type)())
+    })
   }
 
   receive(date, data) {
@@ -140,7 +135,8 @@ class AppContainer extends Component {
       actionType === ActionType.NEWEST ? DaySort.NEWEST : this.state.date
     this.setState(
       {
-        isLoading: true
+        isLoading: true,
+        showSettings: false
       },
       this.makeRequest(date, actionType)
     )
