@@ -79,7 +79,7 @@ const Nav = ({
 
       <li class={`menu-item-settings`}>
         <a
-          class={`btn ${showSettings ? 'btn-active' : ''}`}
+          class={`btn btn-settings ${showSettings ? 'open' : ''}`}
           onClick={onSettingsClick}
         >
           <SettingsIcon />
