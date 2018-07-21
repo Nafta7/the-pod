@@ -1,8 +1,10 @@
+// Viewports
 @custom-media --small-viewport (min-width: 700px)
 @custom-media --medium-viewport (min-width: 978px)
 @custom-media --only-small-viewport (max-width: 699px)
 
 :root
+  // Color palette
   --white: hsl(0, 0%, 95%)
   --black: hsl(0, 0%, 5%)
   --black-dark: hsl(0, 0%, 4.5%)
@@ -10,19 +12,28 @@
   --dark-gray: hsl(0, 0%, 10%)
   --neutral-color: hsl(0, 0%, 60%)
   --light-black: hsl(0, 0%, 12%)
-  --bg-major-color: hsl(204, 47%, 32%)
-  --bg-major-color-d: hsl(204, 53%, 22%)
-  --bg-minor-color: hsl(253, 28%, 36%)
-  --text-width: 500px
-  --text-width-small: 600px
-  --text-width-medium: 700px
-  --footer-width: 800px
 
+  // Typography
   --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
   --font-serif: "Apple Garamond", "Baskerville", "Times New Roman",
     "Droid Serif", "Times","Source Serif Pro", "DejaVu Serif", serif
 
+  // Background
+  /* --bg-major-color: hsl(204, 47%, 32%)
+  --bg-major-color-d: hsl(204, 53%, 22%)
+  --bg-minor-color: hsl(253, 28%, 36%) */
+
+  // Description
+  --text-width: 500px
+  --text-width-small: 600px
+  --text-width-medium: 700px
+
+  // Buttons
+  --btn-active-color: var(--light-gray)
+  --btn-inactive-color: var(--light-black)
+
+  // Loading
   --ring-size: 3.2
   --loader-size: 7
   --ring-inner-text: 'Downloading'
