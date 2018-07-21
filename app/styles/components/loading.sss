@@ -36,3 +36,34 @@
 
   &:before
     content: "\2014 \2009"
+
+
+.loading-description-container
+  padding: 0 1rem
+  position: fixed
+  top: 50%
+  transform: translateY(-50%)
+  width: 100%
+  display: flex
+  justify-content: center
+  @media (--small-viewport)
+    padding: 0
+
+.loading-description-text
+  border: 6px solid var(--dark-gray)
+  font-size: 0.8em
+  text-align: justify
+  padding: 1rem
+  color: white
+  overflow-y: auto
+
+  @media (--only-small-viewport)
+    max-width: var(--text-width)
+    max-height: 50vh
+
+  @media (--small-viewport)
+    max-width: var(--text-width-small)
+    max-height: 65vh
+
+  @media (--medium-viewport)
+    max-width: var(--text-width-medium)
