@@ -2,7 +2,7 @@
   display: flex
   align-items: center
   justify-content: center
-  margin-bottom: 3em
+  color: white
 
   &:before
     width: calc(var(--ring-size) * 1em)
@@ -12,7 +12,7 @@
     border-radius: 50%
     border-color: transparent
     border-style: solid
-    border-width: 2px
+    border-width: 1px
     border-left-color: white
     border-right-color: white
     position: absolute
@@ -20,10 +20,10 @@
 
   &:after
     content: var(--ring-inner-text)
-    font-size: 0.8em
-    width: calc(var(--ring-size) * 1em)
+    font-size: 0.4em
+    width: calc(var(--ring-size) 1em)
     text-align: center
-    /* animation: fadeOut 1.3s ease infinite */
+    animation: fadeOut 2.3s ease infinite
 
 @keyframes rotate
   0%
@@ -31,4 +31,17 @@
 
 @keyframes fadeOut
   50%
-    opacity: 0
+    opacity: 0.5
+
+.ring-fixed
+  position: absolute
+  right: 1em
+  bottom: -4em
+
+  @media (--only-small-viewport)
+    /* max-height: 225px */
+
+  @media (--small-viewport)
+    bottom: -1em
+    right: 2em
+    /* max-height: 60vh */
