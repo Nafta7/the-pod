@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-function InfoIcon({}) {
+function TitleIcon({}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
       <path d="M5 4v3h5.5v12h3V7H19V4z" />
@@ -9,4 +9,4 @@ function InfoIcon({}) {
   )
 }
 
-export default InfoIcon
+export default TitleIcon

@@ -8,7 +8,7 @@ import SettingType from '../constants/SettingType'
 
 import App from '../components/App'
 import ImageWrapper from '../components/ImageWrapper'
-import Info from '../components/Info'
+import Description from '../components/Description'
 import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
 import Footer from '../components/Footer'
@@ -34,10 +34,10 @@ class AppContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showInfo: false,
       showOverlay: false,
       showSettings: false,
       showTitle: false,
+      showDescription: false,
       settings: defaultSettings,
       tries: 0,
       isFailure: false,
@@ -46,7 +46,7 @@ class AppContainer extends Component {
 
     this.handlePreviousClick = this.handlePreviousClick.bind(this)
     this.handleNextClick = this.handleNextClick.bind(this)
-    this.handleToggleClick = this.handleToggleClick.bind(this)
+    this.handleDescriptionClick = this.handleDescriptionClick.bind(this)
     this.handleTitleClick = this.handleTitleClick.bind(this)
     this.handleShuffleClick = this.handleShuffleClick.bind(this)
     this.handleHomeClick = this.handleHomeClick.bind(this)
@@ -82,7 +82,7 @@ class AppContainer extends Component {
 
     this.setState(
       {
-        showInfo: false
+        // showDescription: false
       },
       () => {
         getByDate(date)
@@ -174,9 +174,9 @@ class AppContainer extends Component {
     )
   }
 
-  handleToggleClick() {
+  handleDescriptionClick() {
     this.setState({
-      showInfo: !this.state.showInfo
+      showDescription: !this.state.showDescription
     })
   }
 
@@ -231,8 +231,8 @@ class AppContainer extends Component {
             onImageClick={this.handleImageClick}
           />
 
-          <Info
-            showInfo={this.state.showInfo}
+          <Description
+            showDescription={this.state.showDescription}
             explanation={this.state.explanation}
           />
 
@@ -268,9 +268,9 @@ class AppContainer extends Component {
         <div>
           <Footer
             showTitle={this.state.showTitle}
-            showInfo={this.state.showInfo}
+            showDescription={this.state.showDescription}
             onTitleClick={this.handleTitleClick}
-            onToggleClick={this.handleToggleClick}
+            onDescriptionClick={this.handleDescriptionClick}
             date={this.state.date}
             title={this.state.title}
           />

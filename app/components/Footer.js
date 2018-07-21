@@ -1,35 +1,33 @@
 import { h } from 'preact'
-import InfoIcon from '../icons/InfoIcon'
+import TitleIcon from '../icons/TitleIcon'
 import DescriptionIcon from '../icons/DescriptionIcon'
 
 function Footer({
   title,
   date,
   showTitle,
-  showInfo,
+  showDescription,
   onTitleClick,
-  onToggleClick
+  onDescriptionClick
 }) {
-  const footerVisibility = showTitle ? 'show' : ''
-
-  let toggleButtonClasses = ['btn']
-  if (showInfo) toggleButtonClasses.push('active')
-
   return (
     <footer class="footer-container">
       <div class="footer-icon">
         <a class="btn" onClick={onTitleClick}>
-          <InfoIcon />
+          <TitleIcon />
           <span class="btn-text">Title</span>
         </a>
       </div>
-      <div class={`footer ${footerVisibility}`}>
+      <div class={`footer ${showTitle ? 'show' : ''}`}>
         <div class="footer-inner">
           <span class="footer-title">{title}</span>
         </div>
       </div>
       <div class="footer-icon">
-        <a class={toggleButtonClasses.join(' ')} onClick={onToggleClick}>
+        <a
+          class={`btn ${showDescription ? 'active' : ''}`}
+          onClick={onDescriptionClick}
+        >
           <DescriptionIcon />
           <span class="btn-text">Details</span>
         </a>
