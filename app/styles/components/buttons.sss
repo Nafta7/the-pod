@@ -11,26 +11,37 @@
   justify-content: center
 
   &.active
-    background-color: var(--light-black)
+    color: var(--btn-active-color)
     cursor: pointer
+
+    & > .icon
+      fill: var(--btn-active-color)
 
   &:focus
     outline: none
 
   &[disabled]
-    opacity: 0.3
+    color: var(--btn-inactive-color)
+
+    & > .icon
+      fill: var(--btn-inactive-color)
 
 .non-touch
 
   & .btn-active, & .btn:hover
-    background-color: var(--light-black)
     cursor: pointer
+    color: var(--btn-active-color)
+
+    & > .icon
+      fill: var(--btn-active-color)
 
   & .btn[disabled]:hover
-    cursor: auto
-    background-color: black
-    color: white
-    border-color: white
+    cursor: not-allowed
+    background-color: var(--black)
+    color: var(--btn-inactive-color)
+
+    & > .icon
+      fill: var(--btn-inactive-color)
 
 .icon
   fill: white
