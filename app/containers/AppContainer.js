@@ -13,7 +13,7 @@ import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
 import Footer from '../components/Footer'
 
-import LoadingContainer from './LoadingContainer'
+import LoadingContainer from './LoadingDescriptionContainer'
 import Failure from '../components/Failure'
 
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
@@ -211,7 +211,13 @@ class AppContainer extends Component {
   render() {
     let component
     if (this.state.isLoading) {
-      component = <LoadingContainer key="loading-key" />
+      component = (
+        <LoadingContainer
+          key="loading-key"
+          title={this.state.title}
+          description={this.state.explanation}
+        />
+      )
     }
     if (this.state.isFailure) {
       component = <Failure key="failure-key" tries={this.state.tries} />
