@@ -44,12 +44,9 @@ class AppContainer extends Component {
       isLoading: true
     }
 
-    this.handlePreviousClick = this.handlePreviousClick.bind(this)
-    this.handleNextClick = this.handleNextClick.bind(this)
+    this.handleActionClick = this.handleActionClick.bind(this)
     this.handleDescriptionClick = this.handleDescriptionClick.bind(this)
     this.handleTitleClick = this.handleTitleClick.bind(this)
-    this.handleShuffleClick = this.handleShuffleClick.bind(this)
-    this.handleHomeClick = this.handleHomeClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.handleSettingsClick = this.handleSettingsClick.bind(this)
@@ -138,39 +135,14 @@ class AppContainer extends Component {
     }
   }
 
-  handleHomeClick() {
+  handleActionClick(actionType) {
+    const date =
+      actionType === ActionType.NEWEST ? DaySort.NEWEST : this.state.date
     this.setState(
       {
         isLoading: true
       },
-      this.makeRequest(DaySort.NEWEST, ActionType.NEWEST)
-    )
-  }
-
-  handlePreviousClick() {
-    this.setState(
-      {
-        isLoading: true
-      },
-      this.makeRequest(this.state.date, ActionType.PREVIOUS)
-    )
-  }
-
-  handleShuffleClick() {
-    this.setState(
-      {
-        isLoading: true
-      },
-      this.makeRequest(this.state.date, ActionType.SHUFFLE)
-    )
-  }
-
-  handleNextClick() {
-    this.setState(
-      {
-        isLoading: true
-      },
-      this.makeRequest(this.state.date, ActionType.NEXT)
+      this.makeRequest(date, actionType)
     )
   }
 
@@ -249,14 +221,11 @@ class AppContainer extends Component {
       <div>
         <Nav
           date={this.state.date}
+          settings={this.state.settings}
           showSettings={this.state.showSettings}
-          onHomeClick={this.handleHomeClick}
-          onPreviousClick={this.handlePreviousClick}
-          onShuffleClick={this.handleShuffleClick}
-          onNextClick={this.handleNextClick}
+          onActionClick={this.handleActionClick}
           onSettingsClick={this.handleSettingsClick}
           setSetting={this.setSetting}
-          settings={this.state.settings}
         />
         <PreactCSSTransitionGroup
           transitionName="fade"
@@ -267,12 +236,12 @@ class AppContainer extends Component {
         </PreactCSSTransitionGroup>
         <div>
           <Footer
+            date={this.state.date}
+            title={this.state.title}
             showTitle={this.state.showTitle}
             showDescription={this.state.showDescription}
             onTitleClick={this.handleTitleClick}
             onDescriptionClick={this.handleDescriptionClick}
-            date={this.state.date}
-            title={this.state.title}
           />
         </div>
       </div>
