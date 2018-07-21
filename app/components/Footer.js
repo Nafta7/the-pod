@@ -20,6 +20,7 @@ function Footer({
       <div class="footer-icon">
         <a class="btn" onClick={onTitleClick}>
           <InfoIcon />
+          <span class="btn-text">Title</span>
         </a>
       </div>
       <div class={`footer ${footerVisibility}`}>
