@@ -3,9 +3,9 @@
   color: var(--white)
   position: absolute
   transition: opacity 0.1s linear
-  min-width: 12em
+  min-width: 9em
   z-index: -1
-  top: 110%
+  top: 105%
   right: 0
   opacity: 0
   visibility: hidden
@@ -14,13 +14,16 @@
     opacity: 1
     visibility: visible
 
+  @media(--small-viewport)
+    top: 107%
+
 .settings-item
-  padding: 0.5rem 1rem
+  padding: 0.3rem 1rem
   display: flex
   justify-content: space-between
 
-  &:not(:last-child)
-    border-bottom: 1px solid var(--white)
+  &:hover
+    background-color: rgba(75,75,75,0.3)
 
   & > label
     width: 100%
@@ -28,10 +31,7 @@
   & > label[disabled]
     color: var(--light-gray)
 
-  & > .link
-    color: white
-    text-decoration: none
-    width: 100%
 
-    &:hover
-      text-decoration: underline
+a.settings-item
+  color: var(--white)
+  text-decoration: none
