@@ -1,0 +1,39 @@
+.frame-group
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+.quotation
+  font-family: var(--font-serif)
+  max-width: var(--text-width)
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  position: relative
+  width: 100%
+  padding: 0 1.5rem 0 4rem
+
+  &:before
+    content: '\201C'
+    position: absolute
+    top: 2rem
+    left: 1.1rem
+    font-size: 5em
+    line-height: 0
+
+.quote
+  font-size: 1.5em
+  line-height: 1.45
+  margin: 0
+  padding: 0
+  margin-bottom: 1em
+  font-style: italic
+
+.author
+  color: var(--neutral-color)
+  font-size: 1.5em
+
+  &:before
+    content: "\2014 \2009"
+

@@ -12,8 +12,7 @@ import Description from '../components/Description'
 import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
 import Footer from '../components/Footer'
-
-import LoadingContainer from './LoadingDescriptionContainer'
+import Loading from '../components/LoadingSpinner'
 import Failure from '../components/Failure'
 
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
@@ -179,13 +178,7 @@ class AppContainer extends Component {
   render() {
     let component
     if (this.state.isLoading) {
-      component = (
-        <LoadingContainer
-          key="loading-key"
-          title={this.state.title}
-          description={this.state.explanation}
-        />
-      )
+      component = <Loading key="loading-key" />
     }
     if (this.state.isFailure) {
       component = <Failure key="failure-key" tries={this.state.tries} />
@@ -197,11 +190,6 @@ class AppContainer extends Component {
           <ImageWrapper
             imageUrl={this.state.imageUrl}
             onImageClick={this.handleImageClick}
-          />
-
-          <Description
-            showDescription={this.state.showDescription}
-            explanation={this.state.explanation}
           />
 
           <Overlay
@@ -223,6 +211,14 @@ class AppContainer extends Component {
           onSettingsClick={this.handleSettingsClick}
           setSetting={this.setSetting}
         />
+
+        <Description
+          showDescription={this.state.showDescription}
+          isLoading={this.state.isLoading}
+          description={this.state.explanation}
+          title={this.state.title}
+        />
+
         <PreactCSSTransitionGroup
           transitionName="fade"
           transitionEnterTimeout={1000}
@@ -230,16 +226,14 @@ class AppContainer extends Component {
         >
           {component}
         </PreactCSSTransitionGroup>
-        <div>
-          <Footer
-            date={this.state.date}
-            title={this.state.title}
-            showTitle={this.state.showTitle}
-            showDescription={this.state.showDescription}
-            onTitleClick={this.handleTitleClick}
-            onDescriptionClick={this.handleDescriptionClick}
-          />
-        </div>
+        <Footer
+          date={this.state.date}
+          title={this.state.title}
+          showTitle={this.state.showTitle}
+          showDescription={this.state.showDescription}
+          onTitleClick={this.handleTitleClick}
+          onDescriptionClick={this.handleDescriptionClick}
+        />
       </div>
     )
   }
