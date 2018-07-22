@@ -18,9 +18,9 @@ function Footer({
           <span class="btn-text">Title</span>
         </a>
       </div>
-      <div class={`footer ${showTitle ? 'show' : ''}`}>
+      <div class={`footer ${showTitle ? 'show' : ''} footer-title`}>
         <div class="footer-inner">
-          <span class="footer-title">{title}</span>
+          <span class="footer-inner-title">{title}</span>
         </div>
       </div>
       <div class="footer-icon">
