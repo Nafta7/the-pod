@@ -6,6 +6,8 @@ import ActionType from '../constants/ActionType'
 import DaySort from '../constants/DaySort'
 import SettingType from '../constants/SettingType'
 
+const config = require('../../appconfig')
+
 import App from '../components/App'
 import ImageWrapper from '../components/ImageWrapper'
 import Description from '../components/Description'
@@ -21,6 +23,7 @@ import shuffleDate from '../helpers/shuffle-date'
 import tomorrow from '../helpers/tomorrow'
 import yesterday from '../helpers/yesterday'
 import isDateSafe from '../helpers/is-date-safe'
+import updateImageWrapper from '../helpers/update-image-wrapper'
 
 const downloadImage = new Image()
 
@@ -51,6 +54,10 @@ class AppContainer extends Component {
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.handleSettingsClick = this.handleSettingsClick.bind(this)
     this.setSetting = this.setSetting.bind(this)
+    this.updateImage =
+      config.mode === AppConstants.DEV_MODE
+        ? updateImageWrapper.bind(this, this.updateImage)
+        : this.updateImage.bind(this)
   }
 
   makeRequest(currentDate, type) {
@@ -84,6 +91,13 @@ class AppContainer extends Component {
     })
   }
 
+  updateImage(imageUrl) {
+    this.setState({
+      imageUrl: imageUrl,
+      isLoadingImage: false
+    })
+  }
+
   receive(date, data) {
     let imageUrl = this.state.settings.isHd ? data.hdurl : data.url
 
@@ -100,17 +114,10 @@ class AppContainer extends Component {
       isLoadingData: false
     })
 
-    const update = () => {
-      this.setState({
-        imageUrl: imageUrl,
-        isLoadingImage: false
-      })
-    }
-
     if (this.state.settings.isAsync) {
-      update()
+      this.updateImage(imageUrl)
     } else {
-      downloadImage.onload = update
+      downloadImage.onload = this.updateImage.bind(this, imageUrl)
       downloadImage.src = imageUrl
     }
   }
