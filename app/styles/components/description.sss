@@ -1,3 +1,12 @@
+.description-container
+  opacity: 0
+  visibility: hidden
+  transition: all 0.2s linear
+
+  &.show
+    opacity: 1
+    visibility: visible
+
 .description
   padding: 0 1rem
   opacity: 0
@@ -9,7 +18,7 @@
   justify-content: center
   width: 100%
   z-index: 1
-  transition-duration: 0.3s
+  transition-duration: 0.4s
 
   @media (--small-viewport)
     width: auto
@@ -18,6 +27,7 @@
   &.show
     opacity: 1
     visibility: visible
+
 
 .description-text
   width: 100%
@@ -33,10 +43,8 @@
     max-height: 50vh
 
   @media (--small-viewport)
-    max-width: var(--text-width-small)
-    min-width: var(--text-width-small)
+    width: var(--text-width-small)
     max-height: 65vh
 
   @media (--medium-viewport)
-    max-width: var(--text-width-medium)
-    min-width: var(--text-width-medium)
+    width: var(--text-width-medium)

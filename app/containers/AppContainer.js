@@ -40,7 +40,8 @@ class AppContainer extends Component {
       settings: defaultSettings,
       tries: 0,
       isFailure: false,
-      isLoading: true
+      isLoadingData: true,
+      isLoadingImage: true
     }
 
     this.handleActionClick = this.handleActionClick.bind(this)
@@ -95,13 +96,14 @@ class AppContainer extends Component {
       explanation: data.explanation,
       date: date,
       tries: 0,
-      isFailure: false
+      isFailure: false,
+      isLoadingData: false
     })
 
     const update = () => {
       this.setState({
         imageUrl: imageUrl,
-        isLoading: false
+        isLoadingImage: false
       })
     }
 
@@ -117,7 +119,8 @@ class AppContainer extends Component {
     if (this.state.tries >= AppConstants.MAX_TRY) {
       this.setState({
         isFailure: true,
-        isLoading: false
+        isLoadingData: false,
+        isLoadingImage: false
       })
     } else {
       this.setState(
@@ -134,7 +137,8 @@ class AppContainer extends Component {
       actionType === ActionType.NEWEST ? DaySort.NEWEST : this.state.date
     this.setState(
       {
-        isLoading: true,
+        isLoadingData: true,
+        isLoadingImage: true,
         showSettings: false
       },
       this.makeRequest(date, actionType)
@@ -177,7 +181,7 @@ class AppContainer extends Component {
 
   render() {
     let component
-    if (this.state.isLoading) {
+    if (this.state.isLoadingImage) {
       component = <Loading key="loading-key" />
     }
     if (this.state.isFailure) {
@@ -214,7 +218,8 @@ class AppContainer extends Component {
 
         <Description
           showDescription={this.state.showDescription}
-          isLoading={this.state.isLoading}
+          isLoadingData={this.state.isLoadingData}
+          isLoadingImage={this.state.isLoadingImage}
           description={this.state.explanation}
           title={this.state.title}
         />
