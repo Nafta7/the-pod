@@ -245,6 +245,15 @@ a.settings-item {
   -webkit-transform: rotate(35deg);
           transform: rotate(35deg)
 }
+.description-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s linear
+}
+.description-container.show {
+  opacity: 1;
+  visibility: visible
+}
 .description {
   padding: 0 1rem;
   opacity: 0;
@@ -257,7 +266,7 @@ a.settings-item {
   justify-content: center;
   width: 100%;
   z-index: 1;
-  transition-duration: 0.3s
+  transition-duration: 0.4s
 }
 .description.show {
   opacity: 1;
@@ -276,7 +285,7 @@ a.settings-item {
 .footer-container {
   font-size: 1em;
   position: absolute;
-  bottom: 1em;
+  bottom: 0;
   left: 0;
   color: hsl(0, 0%, 95%);
   display: flex;
@@ -361,64 +370,6 @@ a.settings-item {
   -webkit-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%)
 }
-.frame-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center
-}
-.quotation {
-  font-family: "Apple Garamond", "Baskerville", "Times New Roman",
-    "Droid Serif", "Times","Source Serif Pro", "DejaVu Serif", serif;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-  padding: 0 1.5rem 0 4rem
-}
-.quotation:before {
-  content: '\201C';
-  position: absolute;
-  top: 2rem;
-  left: 1.1rem;
-  font-size: 5em;
-  line-height: 0
-}
-.quote {
-  font-size: 1.5em;
-  line-height: 1.45;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1em;
-  font-style: italic
-}
-.author {
-  color: hsl(0, 0%, 60%);
-  font-size: 1.5em
-}
-.author:before {
-  content: "\2014 \2009"
-}
-.loading-description-container {
-  padding: 0 1rem;
-  position: fixed;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 100%;
-  display: flex;
-  justify-content: center
-}
-.loading-description-text {
-  border: 6px solid hsl(0, 0%, 10%);
-  font-size: 0.8em;
-  text-align: justify;
-  padding: 1rem;
-  color: white;
-  overflow-y: auto
-}
 .ring {
   display: flex;
   align-items: center;
@@ -477,7 +428,7 @@ a.settings-item {
 }
 @media (min-width: 700px) {
   .menu {
-    margin-top: 1em;
+    margin-top: 0.4rem;
     font-size: 0.9em
   }
   .menu li {
@@ -495,11 +446,11 @@ a.settings-item {
     padding: 0
   }
   .description-text {
-    max-width: 600px;
-    min-width: 600px;
+    width: 600px;
     max-height: 65vh
   }
   .footer-container {
+    bottom: 0.4rem;
     font-size: 0.9em
   }
   .footer-title {
@@ -510,13 +461,6 @@ a.settings-item {
     max-height: 80%;
     max-width: 80%
   }
-  .loading-description-container {
-    padding: 0
-  }
-  .loading-description-text {
-    max-width: 600px;
-    max-height: 65vh
-  }
   .ring-fixed {
     bottom: 2em;
     right: 2em
@@ -526,21 +470,13 @@ a.settings-item {
   .description-text {
     max-height: 50vh
   }
-  .loading-description-text {
-    max-width: 500px;
-    max-height: 50vh
-  }
 }
 @media (min-width: 978px) {
   .description-text {
-    max-width: 700px;
-    min-width: 700px
+    width: 700px
   }
   .footer-title {
     max-width: 600px;
     min-width: 600px
-  }
-  .loading-description-text {
-    max-width: 700px
   }
 }
