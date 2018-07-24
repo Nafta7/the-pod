@@ -4,6 +4,8 @@ dist/*
 !dist/index.html
 .vscode/
 
+credentials.json
+
 npm-debug.log
 bundle.js
 bundle.min.js
