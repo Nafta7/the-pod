@@ -5,8 +5,8 @@
   color: white
 
   &:before
-    width: calc(var(--ring-size) * 1em)
-    height: calc(var(--ring-size) * 1em)
+    width: calc(var(--ring-size) * 1.2em)
+    height: calc(var(--ring-size) * 1.2em)
     content: ""
     display: flex
     border-radius: 50%
@@ -19,9 +19,10 @@
     animation: rotate 1s ease infinite
 
   &:after
+    font-size: .5em
     content: var(--ring-inner-text)
-    font-size: 0.4em
-    width: calc(var(--ring-size) 1em)
+    line-height: 1.2em
+    width: calc(var(--ring-size) * 1.8em)
     text-align: center
     animation: fadeOut 2.3s ease infinite
 
@@ -35,7 +36,7 @@
 
 .ring-fixed
   position: absolute
-  right: 1em
+  right: 1.5em
   bottom: 6em
 
   @media (--small-viewport)
