@@ -3,26 +3,53 @@
 ## Overview
 
 > #### "Astronomy Picture of the Day ([APOD](https://apod.nasa.gov)) is a website provided by NASA. Each day a different image or photograph of our universe is featured, along with a brief explanation written by a professional astronomer."
->[Wikipedia](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day)
+>
+> [Wikipedia](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day)
 
- **The Pod** is a reimagining of the APOD UI using modern technology.
+**The Pod** is a reimagining of the APOD UI using modern technology.
 
 ## Features
 
- - Beautiful display of imagery.
- - Mobile-friendly.
- - Learn more about the picture using the **info** button.
- - Navigate between days using **previous** and **next** buttons.
- - Let lady luck pick a day for you using the **shuffle** button.
- - Click on the image to have a complete view of the image.
+- Beautiful display of imagery.
+- Mobile-friendly.
+- Learn more about the picture using the **info** button.
+- Navigate between days using **previous** and **next** buttons.
+- Let lady luck pick a day for you using the **shuffle** button.
+- Click on the image to have a complete view of the image.
+
+## Development
+
+Download the repository:
+
+```bash
+git clone https://github.com/nefla/the-pod
+```
+
+Install the dependencies:
+
+```bash
+cd the-pod
+npm install
+```
+
+Add your credentials to the new file:
+
+```bash
+cp credentials-template.json credentials.json
+```
+
+To start working:
+
+```bash
+npm start
+```
 
 ## License
 
-The Pod  is distributed under the terms of the BSD-2.
+The Pod is distributed under the terms of the BSD-2.
 
 ## Third-party resources
 
-[Material icons](https://github.com/google/material-design-icons/
-) - Provides the icons on the menu. | Apache 2.0
+[Material icons](https://github.com/google/material-design-icons/) - Provides the icons on the menu. | Apache 2.0
 
 [NASA APOD API](https://api.nasa.gov/api.html#apod) - Provides the images displayed.
