@@ -2,11 +2,8 @@
 
 ## High priority
 
-- [x] Fix loading & smooth transitions
-- [x] Fix menu & footer positions
-- [x] Add imageDownload simulation for dev env
-- [x] Add toggle-switch button
-- [x] Add configuration options
+- [ ] Refactor AppContainer render
+- [ ] Implement About option
 
 ## Medium priority
 
