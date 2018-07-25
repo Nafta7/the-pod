@@ -1,0 +1,40 @@
+.toggle-switch-container
+  display: flex
+  align-items: center
+
+.toggle-switch-input
+  opacity: 0
+
+.toggle-switch-input[disabled] + label
+  cursor: not-allowed
+  opacity: 0.4
+
+.toggle-switch-input + label
+  background: var(--toggle-switch-off-bg-color)
+  font-size: 1.8em
+  display: inline-block
+  width: 2em
+  height: 1em
+  border-radius: 0.5em
+  position: relative
+  cursor: pointer
+
+.toggle-switch-input:checked + label
+  background: var(--toggle-switch-on-bg-color)
+
+.switch
+  background: var(--toggle-switch-color)
+  position: absolute
+  width: 0.9em
+  height: 0.9em
+  margin-top: 0.05em
+  margin-left: 0.05em
+  border-radius: 1em
+  box-shadow: 5px 0px 28px -9px rgba(0, 0, 0, 0.75)
+  transition: transform .2s ease-in
+
+.toggle-switch-input:checked ~ .toggle-switch-label .switch
+  transform: translatex(1em)
+  transition: transform .2s ease-in
+
+

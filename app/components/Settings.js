@@ -10,31 +10,45 @@ const Settings = props => {
         <label for="async" disabled title="Download the images asynchronously">
           Async
         </label>
-        <input
-          id="async"
-          name="async"
-          type="checkbox"
-          disabled="true"
-          title="Download the images asynchronously"
-          onChange={e =>
-            props.setSetting(SettingType.IS_ASYNC, e.target.checked)
-          }
-          checked={props.settings.isAsync}
-        />
+        <div class="toggle-switch-container">
+          <input
+            id="async"
+            name="async"
+            class="toggle-switch-input"
+            type="checkbox"
+            disabled="true"
+            title="Download the images asynchronously"
+            onChange={e =>
+              props.setSetting(SettingType.IS_ASYNC, e.target.checked)
+            }
+            checked={props.settings.isAsync}
+          />
+          <label class="toggle-switch-label" for="async">
+            <div class="switch" />
+          </label>
+        </div>
       </div>
 
       <div class="settings-item">
         <label for="hd" title="Use high quality assets">
           HD
         </label>
-        <input
-          id="hd"
-          name="hd"
-          type="checkbox"
-          title="Use high quality assets"
-          onChange={e => props.setSetting(SettingType.IS_HD, e.target.checked)}
-          checked={props.settings.isHd}
-        />
+        <div class="toggle-switch-container">
+          <input
+            id="hd"
+            name="hd"
+            class="toggle-switch-input"
+            type="checkbox"
+            title="Use high quality assets"
+            onChange={e =>
+              props.setSetting(SettingType.IS_HD, e.target.checked)
+            }
+            checked={props.settings.isHd}
+          />
+          <label class="toggle-switch-label" for="hd">
+            <div class="switch" />
+          </label>
+        </div>
       </div>
 
       <a href="#" class="settings-item">
