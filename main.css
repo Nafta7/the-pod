@@ -13,6 +13,8 @@
 
   /* Buttons */
 
+  /* Toggle-switch */
+
   /* Loading */
 }
 html {
@@ -84,12 +86,16 @@ p {
   justify-content: center;
   color: hsl(0, 0%, 95%)
 }
-.wrapper {
-  background-position: center center;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  align-items: center
+.image-wrapper {
+  width: 100%;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%
+}
+.image-wrapper[src=""] {
+  display: none
 }
 .nav-wrapper {
   position: absolute;
@@ -245,6 +251,50 @@ a.settings-item {
   -webkit-transform: rotate(35deg);
           transform: rotate(35deg)
 }
+.toggle-switch-container {
+  display: flex;
+  align-items: center
+}
+.toggle-switch-input {
+  opacity: 0
+}
+.toggle-switch-input[disabled] + label {
+  cursor: not-allowed;
+  opacity: 0.4
+}
+.toggle-switch-input + label {
+  background: hsl(0, 0%, 80%);
+  font-size: 1.8em;
+  display: inline-block;
+  width: 2em;
+  height: 1em;
+  border-radius: 0.5em;
+  position: relative;
+  cursor: pointer
+}
+.toggle-switch-input:checked + label {
+  background: hsl(140, 70%, 45%)
+}
+.switch {
+  background: hsl(0, 0%, 95%);
+  position: absolute;
+  width: 0.9em;
+  height: 0.9em;
+  margin-top: 0.05em;
+  margin-left: 0.05em;
+  border-radius: 1em;
+  box-shadow: 5px 0px 28px -9px rgba(0, 0, 0, 0.75);
+  transition: -webkit-transform .2s ease-in;
+  transition: transform .2s ease-in;
+  transition: transform .2s ease-in, -webkit-transform .2s ease-in
+}
+.toggle-switch-input:checked ~ .toggle-switch-label .switch {
+  -webkit-transform: translatex(1em);
+          transform: translatex(1em);
+  transition: -webkit-transform .2s ease-in;
+  transition: transform .2s ease-in;
+  transition: transform .2s ease-in, -webkit-transform .2s ease-in
+}
 .description-container {
   opacity: 0;
   visibility: hidden;
@@ -377,8 +427,8 @@ a.settings-item {
   color: white
 }
 .ring:before {
-  width: calc(3.2 * 1em);
-  height: calc(3.2 * 1em);
+  width: calc(3.2 * 1.2em);
+  height: calc(3.2 * 1.2em);
   content: "";
   display: flex;
   border-radius: 50%;
@@ -392,9 +442,10 @@ a.settings-item {
           animation: rotate 1s ease infinite
 }
 .ring:after {
-  content: 'Downloading';
-  font-size: 0.4em;
-  width: calc(3.2 1em);
+  font-size: .5em;
+  content: 'Downloading image';
+  line-height: 1.2em;
+  width: calc(3.2 * 1.8em);
   text-align: center;
   -webkit-animation: fadeOut 2.3s ease infinite;
           animation: fadeOut 2.3s ease infinite
@@ -423,7 +474,7 @@ a.settings-item {
 }
 .ring-fixed {
   position: absolute;
-  right: 1em;
+  right: 1.5em;
   bottom: 6em
 }
 @media (min-width: 700px) {
