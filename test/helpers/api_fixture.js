@@ -5,7 +5,7 @@ import isSameDay from '../../app/helpers/is-same-day'
 import daysBetween from './days-between'
 
 var images = Array.apply(null, Array(7))
-images.forEach((item, i) => (images[i] = `images/img_${i + 1}.jpg`))
+images.forEach((item, i) => (images[i] = `images/img_${i + 1}`))
 images = images.reverse()
 
 function getByDate(date) {
@@ -19,8 +19,8 @@ function getByDateCall(date) {
   var today = new Date()
   var day = Math.abs(daysBetween(today, date) % 7)
 
-  fixture.hdurl = images[day]
-  fixture.url = images[day]
+  fixture.hdurl = `${images[day]}_hd.jpg`
+  fixture.url = `${images[day]}.jpg`
   fixture.date = date
 
   let p = new Promise((resolve, reject) => {
