@@ -47,13 +47,14 @@ class AppContainer extends Component {
       isLoadingImage: true
     }
 
+    this.setSetting = this.setSetting.bind(this)
     this.handleActionClick = this.handleActionClick.bind(this)
     this.handleDescriptionClick = this.handleDescriptionClick.bind(this)
     this.handleTitleClick = this.handleTitleClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.handleSettingsClick = this.handleSettingsClick.bind(this)
-    this.setSetting = this.setSetting.bind(this)
+    this.loadImage = this.loadImage.bind(this)
     this.updateImage =
       config.mode === AppConstants.DEV_MODE
         ? updateImageWrapper.bind(this, this.updateImage)
@@ -91,35 +92,52 @@ class AppContainer extends Component {
     })
   }
 
+  receive(date, data) {
+    this.setState(
+      {
+        title: data.title,
+        explanation: data.explanation,
+        date: date,
+        url: data.url,
+        hdurl: data.hdurl,
+        tries: 0,
+        isFailure: false,
+        isLoadingData: false
+      },
+      this.loadImage
+    )
+  }
+
+  loadImage() {
+    this.setState(
+      {
+        isLoadingImage: true
+      },
+      () => {
+        let imageUrl = this.state.settings.isHd
+          ? this.state.hdurl
+          : this.state.url
+        if (this.state.settings.isHd) {
+          imageUrl = isDateSafe(this.state.date)
+            ? (imageUrl = this.state.hdurl)
+            : (imageUrl = this.state.url)
+        }
+
+        if (this.state.settings.isAsync) {
+          this.updateImage(imageUrl)
+        } else {
+          downloadImage.onload = this.updateImage.bind(this, imageUrl)
+          downloadImage.src = imageUrl
+        }
+      }
+    )
+  }
+
   updateImage(imageUrl) {
     this.setState({
       imageUrl: imageUrl,
       isLoadingImage: false
     })
-  }
-
-  receive(date, data) {
-    let imageUrl = this.state.settings.isHd ? data.hdurl : data.url
-
-    imageUrl = isDateSafe(date)
-      ? (imageUrl = data.hdurl)
-      : (imageUrl = data.url)
-
-    this.setState({
-      title: data.title,
-      explanation: data.explanation,
-      date: date,
-      tries: 0,
-      isFailure: false,
-      isLoadingData: false
-    })
-
-    if (this.state.settings.isAsync) {
-      this.updateImage(imageUrl)
-    } else {
-      downloadImage.onload = this.updateImage.bind(this, imageUrl)
-      downloadImage.src = imageUrl
-    }
   }
 
   handleRejection(err, date, type) {
@@ -255,9 +273,14 @@ class AppContainer extends Component {
     const newSettings = this.state.settings
     newSettings[settingType] = value
 
-    this.setState({
-      settings: newSettings
-    })
+    this.setState(
+      {
+        settings: newSettings
+      },
+      () => {
+        if (!this.state.isLoadingData) this.loadImage()
+      }
+    )
   }
 
   loadSettings() {
