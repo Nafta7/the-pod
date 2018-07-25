@@ -7,16 +7,14 @@ const Settings = props => {
   return (
     <div class={settingsStyles.join(' ')}>
       <div class="settings-item">
-        <label for="async" disabled title="Download the images asynchronously">
+        <label for="async" title="Download the images asynchronously">
           Async
         </label>
         <div class="toggle-switch-container">
           <input
             id="async"
-            name="async"
             class="toggle-switch-input"
             type="checkbox"
-            disabled="true"
             title="Download the images asynchronously"
             onChange={e =>
               props.setSetting(SettingType.IS_ASYNC, e.target.checked)
@@ -36,7 +34,6 @@ const Settings = props => {
         <div class="toggle-switch-container">
           <input
             id="hd"
-            name="hd"
             class="toggle-switch-input"
             type="checkbox"
             title="Use high quality assets"

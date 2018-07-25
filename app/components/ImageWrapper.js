@@ -1,10 +1,9 @@
 import { h } from 'preact'
 
-const ImageWrapper = props => {
+const ImageWrapper = ({ imageUrl, onImageClick }) => {
   return (
-    <a href={props.imageUrl} onClick={props.onImageClick}>
-      <div class="wrapper" style={{backgroundImage: `url(${props.imageUrl})`}}>
-      </div>
+    <a href={imageUrl} onClick={onImageClick}>
+      <img src={imageUrl} class="image-wrapper" />
     </a>
   )
 }

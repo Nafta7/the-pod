@@ -164,7 +164,8 @@ class AppContainer extends Component {
       {
         isLoadingData: true,
         isLoadingImage: true,
-        showSettings: false
+        showSettings: false,
+        imageUrl: ''
       },
       this.makeRequest(date, actionType)
     )
@@ -205,67 +206,112 @@ class AppContainer extends Component {
   }
 
   render() {
-    let component
-    if (this.state.isLoadingImage) {
-      component = <Loading key="loading-key" />
-    }
-    if (this.state.isFailure) {
-      component = <Failure key="failure-key" tries={this.state.tries} />
-    }
+    const appComponent = (
+      <App key="app-key">
+        <ImageWrapper
+          imageUrl={this.state.imageUrl}
+          onImageClick={this.handleImageClick}
+        />
 
-    if (!component) {
-      component = (
-        <App key="app-key">
-          <ImageWrapper
-            imageUrl={this.state.imageUrl}
-            onImageClick={this.handleImageClick}
+        <Overlay
+          imageUrl={this.state.imageUrl}
+          showOverlay={this.state.showOverlay}
+          onOverlayClick={this.handleOverlayClick}
+        />
+      </App>
+    )
+
+    if (!this.state.settings.isAsync) {
+      let component
+      if (this.state.isLoadingImage) {
+        component = <Loading key="loading-key" />
+      }
+      if (this.state.isFailure) {
+        component = <Failure key="failure-key" tries={this.state.tries} />
+      }
+
+      if (!component) {
+        component = appComponent
+      }
+      return (
+        <div>
+          <Nav
+            date={this.state.date}
+            settings={this.state.settings}
+            showSettings={this.state.showSettings}
+            onActionClick={this.handleActionClick}
+            onSettingsClick={this.handleSettingsClick}
+            setSetting={this.setSetting}
+          />
+          <Description
+            showDescription={this.state.showDescription}
+            isLoadingData={this.state.isLoadingData}
+            isLoadingImage={this.state.isLoadingImage}
+            description={this.state.explanation}
+            title={this.state.title}
           />
 
-          <Overlay
-            imageUrl={this.state.imageUrl}
-            showOverlay={this.state.showOverlay}
-            onOverlayClick={this.handleOverlayClick}
+          <PreactCSSTransitionGroup
+            transitionName="fade"
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={500}
+          >
+            {component}
+          </PreactCSSTransitionGroup>
+
+          <Footer
+            date={this.state.date}
+            title={this.state.title}
+            showTitle={this.state.showTitle}
+            showDescription={this.state.showDescription}
+            onTitleClick={this.handleTitleClick}
+            onDescriptionClick={this.handleDescriptionClick}
           />
-        </App>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Nav
+            date={this.state.date}
+            settings={this.state.settings}
+            showSettings={this.state.showSettings}
+            onActionClick={this.handleActionClick}
+            onSettingsClick={this.handleSettingsClick}
+            setSetting={this.setSetting}
+          />
+          <Description
+            showDescription={this.state.showDescription}
+            isLoadingData={this.state.isLoadingData}
+            isLoadingImage={this.state.isLoadingImage}
+            description={this.state.explanation}
+            title={this.state.title}
+          />
+
+          <App key="app-key">
+            <ImageWrapper
+              imageUrl={this.state.imageUrl}
+              onImageClick={this.handleImageClick}
+            />
+
+            <Overlay
+              imageUrl={this.state.imageUrl}
+              showOverlay={this.state.showOverlay}
+              onOverlayClick={this.handleOverlayClick}
+            />
+          </App>
+
+          <Footer
+            date={this.state.date}
+            title={this.state.title}
+            showTitle={this.state.showTitle}
+            showDescription={this.state.showDescription}
+            onTitleClick={this.handleTitleClick}
+            onDescriptionClick={this.handleDescriptionClick}
+          />
+        </div>
       )
     }
-
-    return (
-      <div>
-        <Nav
-          date={this.state.date}
-          settings={this.state.settings}
-          showSettings={this.state.showSettings}
-          onActionClick={this.handleActionClick}
-          onSettingsClick={this.handleSettingsClick}
-          setSetting={this.setSetting}
-        />
-
-        <Description
-          showDescription={this.state.showDescription}
-          isLoadingData={this.state.isLoadingData}
-          isLoadingImage={this.state.isLoadingImage}
-          description={this.state.explanation}
-          title={this.state.title}
-        />
-
-        <PreactCSSTransitionGroup
-          transitionName="fade"
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={500}
-        >
-          {component}
-        </PreactCSSTransitionGroup>
-        <Footer
-          date={this.state.date}
-          title={this.state.title}
-          showTitle={this.state.showTitle}
-          showDescription={this.state.showDescription}
-          onTitleClick={this.handleTitleClick}
-          onDescriptionClick={this.handleDescriptionClick}
-        />
-      </div>
-    )
   }
 
   setSetting(settingType, value) {
