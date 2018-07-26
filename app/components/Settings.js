@@ -1,11 +1,9 @@
 import { h } from 'preact'
 import SettingType from '../constants/SettingType'
 
-const Settings = props => {
-  const settingsStyles = ['settings-menu']
-  if (props.active) settingsStyles.push('show')
+const Settings = ({ settings, showSettings, setSetting, onAboutClick }) => {
   return (
-    <div class={settingsStyles.join(' ')}>
+    <div class={`settings-menu ${showSettings ? 'show' : ''}`}>
       <div class="settings-item">
         <label for="async" title="Download the images asynchronously">
           Async
@@ -16,10 +14,8 @@ const Settings = props => {
             class="toggle-switch-input"
             type="checkbox"
             title="Download the images asynchronously"
-            onChange={e =>
-              props.setSetting(SettingType.IS_ASYNC, e.target.checked)
-            }
-            checked={props.settings.isAsync}
+            onChange={e => setSetting(SettingType.IS_ASYNC, e.target.checked)}
+            checked={settings.isAsync}
           />
           <label class="toggle-switch-label" for="async">
             <div class="switch" />
@@ -37,10 +33,8 @@ const Settings = props => {
             class="toggle-switch-input"
             type="checkbox"
             title="Use high quality assets"
-            onChange={e =>
-              props.setSetting(SettingType.IS_HD, e.target.checked)
-            }
-            checked={props.settings.isHd}
+            onChange={e => setSetting(SettingType.IS_HD, e.target.checked)}
+            checked={settings.isHd}
           />
           <label class="toggle-switch-label" for="hd">
             <div class="switch" />
@@ -48,7 +42,7 @@ const Settings = props => {
         </div>
       </div>
 
-      <a href="#" class="settings-item" onClick={props.onAboutClick}>
+      <a href="#" class="settings-item" onClick={onAboutClick}>
         About
       </a>
       <a

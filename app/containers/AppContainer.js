@@ -15,6 +15,7 @@ import Overlay from '../components/Overlay'
 import Description from '../components/Description'
 import About from '../components/About'
 import Footer from '../components/Footer'
+import Settings from '../components/Settings'
 
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
 import getByDate from '../helpers/get-by-date-bridge'
@@ -203,16 +204,19 @@ class AppContainer extends Component {
       <div>
         <Nav
           date={this.state.date}
-          settings={this.state.settings}
-          showSettings={this.state.showSettings}
           onActionClick={this.handleActionClick}
           onSettingsClick={this.handleToggleClick.bind(
             null,
             ToggleType.SETTINGS
           )}
-          onAboutClick={this.handleToggleClick.bind(null, ToggleType.ABOUT)}
-          setSetting={this.setSetting}
-        />
+        >
+          <Settings
+            showSettings={this.state.showSettings}
+            setSetting={this.setSetting}
+            settings={this.state.settings}
+            onAboutClick={this.handleToggleClick.bind(null, ToggleType.ABOUT)}
+          />
+        </Nav>
 
         <Description
           showDescription={this.state.showDescription}

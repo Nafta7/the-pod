@@ -16,12 +16,10 @@ import Settings from './Settings'
 
 const Nav = ({
   onActionClick,
-  onAboutClick,
   onSettingsClick,
-  setSetting,
   date,
-  settings,
-  showSettings
+  showSettings,
+  children
 }) => {
   const footerDate = date ? displayDate(date) : ''
   let disableNext = false,
@@ -85,12 +83,7 @@ const Nav = ({
         >
           <SettingsIcon />
         </a>
-        <Settings
-          active={showSettings}
-          setSetting={setSetting}
-          onAboutClick={onAboutClick}
-          settings={settings}
-        />
+        {children}
       </li>
     </ul>
   )
