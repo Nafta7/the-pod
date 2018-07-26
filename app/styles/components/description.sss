@@ -1,50 +1,52 @@
 .description-container
   opacity: 0
   visibility: hidden
-  transition: all 0.2s linear
+  transition: var(--description-container-transition)
 
   &.show
     opacity: 1
     visibility: visible
 
 .description
-  padding: 0 1rem
+  width: var(--description-width)
+  padding: var(--description-padding-y) var(--description-padding-x)
+  z-index: var(--description-z-index)
+  transition-duration: var(--description-transition-duration)
+  justify-content: center
   opacity: 0
   visibility: hidden
   position: absolute
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
-  justify-content: center
-  width: 100%
-  z-index: 1
-  transition-duration: 0.4s
 
   @media (--small-viewport)
-    width: auto
-    padding: 0
+    width: var(--description-sm-width)
+    padding: var(--description-sm-padding-y) var(--description-sm-padding-x)
 
   &.show
     opacity: 1
     visibility: visible
 
-
 .description-text
-  width: 100%
-  background: rgba(0,0,0,0.8)
-  border: 6px solid var(--dark-gray)
-  font-size: 0.8em
-  text-align: justify
-  padding: 1rem
-  color: white
+  width: var(--description-text-width)
+  padding: var(--description-text-padding-y) var(--description-text-padding-x)
+  font-size: var(--description-text-font-size)
+  color: var(--description-text-color)
+  text-align: var(--descripiton-text-align)
+  background: var(--description-text-bg)
+  border-width: var(--description-text-border-width)
+  border-style: var(--description-text-border-style)
+  border-color: var(--description-text-border-color)
   overflow-y: auto
 
   @media (--only-small-viewport)
-    max-height: 50vh
+    max-height: var(--description-text-only-sm-max-height)
 
   @media (--small-viewport)
-    width: var(--text-width-small)
-    max-height: 65vh
+    width: var(--description-text-sm-width)
+    max-height: var(--description-text-sm-max-height)
 
   @media (--medium-viewport)
-    width: var(--text-width-medium)
+    width: var(--description-text-md-width)
+
