@@ -1,12 +1,12 @@
 .settings-menu
-  background-color: rgba(25,25,25,0.9)
-  color: var(--white)
   position: absolute
-  transition: opacity 0.1s linear
-  min-width: 9em
-  z-index: -1
-  top: 105%
-  right: 0
+  top: var(--settings-menu-top)
+  right: var(--settings-menu-right)
+  min-width: var(--settings-menu-min-width)
+  background-color: var(--settings-menu-bg)
+  color: var(--settings-menu-color)
+  z-index: var(--settings-menu-z-index)
+  transition: var(--settings-menu-transition)
   opacity: 0
   visibility: hidden
 
@@ -15,25 +15,25 @@
     visibility: visible
 
   @media(--small-viewport)
-    top: 107%
+    top: var(--settings-menu-sm-top)
 
 .settings-item
-  height: 2.5em
+  height: var(--settings-item-height)
+  padding: var(--settings-item-padding-y) var(--settings-item-padding-x)
   display: flex
-  padding: 0 0.9em
   align-items: center
   justify-content: space-between
 
   &:hover
-    background-color: rgba(75,75,75,0.3)
+    background-color: var(--settings-item-hover-bg)
 
   & > label
     width: 100%
 
   & > label[disabled]
-    color: var(--light-gray)
+    color: var(--settings-item-disabled-color)
 
 
 a.settings-item
-  color: var(--white)
+  color: var(--settings-item-link-color)
   text-decoration: none
