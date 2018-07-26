@@ -2,9 +2,7 @@
 
 ## High priority
 
-- [ ] Add SVG cursor to the overlay component (close icon)
-      https://github.com/TrySound/postcss-inline-svg
-- [ ] Create stylesheet variables for the components that are missing
+- [ ]
 
 ## Medium priority
 
