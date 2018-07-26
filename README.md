@@ -6,7 +6,7 @@
 >
 > [Wikipedia](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day)
 
-**The Pod** is a reimagining of the APOD for the modern web.
+Re-imagining the APOD for modern times.
 
 ## Features
 
