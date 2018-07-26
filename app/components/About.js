@@ -5,7 +5,7 @@ function About() {
     <div class="about-container">
       <div class="about" id="about">
         <h2>About</h2>
-        <p class="text">Reimagining the APOD for the modern web.</p>
+        <p class="text">Re-imagining the APOD for modern times.</p>
 
         <h3>Credits</h3>
         <ul class="about-credits-list text">
