@@ -139,6 +139,7 @@ class AppContainer extends Component {
   handleRejection(err, date, type) {
     if (this.state.tries >= AppConstants.MAX_TRY) {
       this.setState({
+        date,
         isFailure: true,
         isLoadingData: false,
         isLoadingImage: false
