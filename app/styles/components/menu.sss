@@ -1,24 +1,23 @@
 .menu
-  font-size: 1em
+  position: absolute
+  left: var(--menu-left)
+  width: var(--menu-width)
+  padding: var(--menu-padding-y) var(--menu-padding-x)
+  margin: var(--menu-margin-y) var(--menu-margin-y)
+  font-size: var(--menu-font-size)
+  z-index: var(--menu-z-index)
   display: flex
-  list-style: none
-  align-items: center
   justify-content: center
   align-items: stretch
   flex: 1 0 auto
-  position: absolute
-  z-index: 5
-  padding: 0
-  width: 100%
-  left: 0
-  margin: 0
+  list-style: none
 
   @media (--small-viewport)
-    width: auto
-    left: 50%
+    left: var(--menu-sm-left)
+    width: var(--menu-sm-width)
+    font-size: var(--menu-sm-font-size)
+    margin-top: var(--menu-sm-margin-top)
     transform: translateX(-50%)
-    margin-top: 0.4rem
-    font-size: 0.9em
 
   & li
     display: flex
