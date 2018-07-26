@@ -1,21 +1,17 @@
 import { h, Component } from 'preact'
-import PreactCSSTransitionGroup from 'preact-css-transition-group'
+const config = require('../../appconfig')
 
 import AppConstants from '../constants/AppConstants'
 import ActionType from '../constants/ActionType'
 import DaySort from '../constants/DaySort'
 import SettingType from '../constants/SettingType'
 
-const config = require('../../appconfig')
-
-import App from '../components/App'
+import AppWrapper from '../components/AppWrapper'
 import ImageWrapper from '../components/ImageWrapper'
 import Description from '../components/Description'
 import Nav from '../components/Nav'
 import Overlay from '../components/Overlay'
 import Footer from '../components/Footer'
-import Loading from '../components/LoadingSpinner'
-import Failure from '../components/Failure'
 
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
 import getByDate from '../helpers/get-by-date-bridge'
@@ -206,50 +202,6 @@ class AppContainer extends Component {
   }
 
   render() {
-    const appComponent = (
-      <App key="app-key">
-        <ImageWrapper
-          imageUrl={this.state.imageUrl}
-          onImageClick={this.handleImageClick}
-        />
-
-        <Overlay
-          imageUrl={this.state.imageUrl}
-          showOverlay={this.state.showOverlay}
-          onOverlayClick={this.handleOverlayClick}
-        />
-      </App>
-    )
-
-    let component, mainComponent
-
-    if (!this.state.settings.isAsync) {
-      if (this.state.isLoadingImage) {
-        component = <Loading key="loading-key" />
-      }
-      if (this.state.isFailure) {
-        component = <Failure key="failure-key" tries={this.state.tries} />
-      }
-
-      if (!component) {
-        component = appComponent
-      }
-
-      const transitionComponent = (
-        <PreactCSSTransitionGroup
-          transitionName="fade"
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={500}
-        >
-          {component}
-        </PreactCSSTransitionGroup>
-      )
-
-      mainComponent = transitionComponent
-    } else {
-      mainComponent = appComponent
-    }
-
     return (
       <div>
         <Nav
@@ -260,6 +212,7 @@ class AppContainer extends Component {
           onSettingsClick={this.handleSettingsClick}
           setSetting={this.setSetting}
         />
+
         <Description
           showDescription={this.state.showDescription}
           isLoadingData={this.state.isLoadingData}
@@ -268,7 +221,23 @@ class AppContainer extends Component {
           title={this.state.title}
         />
 
-        {mainComponent}
+        <AppWrapper
+          isAsync={this.state.settings.isAsync}
+          isFailure={this.state.isFailure}
+          isLoadingImage={this.state.isLoadingImage}
+          tries={this.state.tries}
+        >
+          <ImageWrapper
+            imageUrl={this.state.imageUrl}
+            onImageClick={this.handleImageClick}
+          />
+
+          <Overlay
+            imageUrl={this.state.imageUrl}
+            showOverlay={this.state.showOverlay}
+            onOverlayClick={this.handleOverlayClick}
+          />
+        </AppWrapper>
 
         <Footer
           date={this.state.date}
