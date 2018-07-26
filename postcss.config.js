@@ -9,6 +9,9 @@ module.exports = ctx => ({
     'postcss-css-variables': {},
     'css-mqpacker': {},
     'postcss-custom-media': {},
+    'postcss-inline-svg': {
+      path: 'app'
+    },
     'postcss-responsive-type': {},
     autoprefixer: {},
     cssnano:
