@@ -235,6 +235,12 @@ class AppContainer extends Component {
           description={this.state.explanation}
           title={this.state.title}
         />
+        <Overlay
+          showOverlay={this.state.showAbout}
+          onOverlayClick={this.handleOverlayClick.bind(null, 'showAbout')}
+        >
+          <About />
+        </Overlay>
 
         <AppWrapper
           isAsync={this.state.settings.isAsync}
@@ -255,13 +261,6 @@ class AppContainer extends Component {
             )}
           >
             <ImageOverlay imageUrl={this.state.imageUrl} />
-          </Overlay>
-
-          <Overlay
-            showOverlay={this.state.showAbout}
-            onOverlayClick={this.handleOverlayClick.bind(null, 'showAbout')}
-          >
-            <About />
           </Overlay>
         </AppWrapper>
 
