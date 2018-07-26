@@ -34,7 +34,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.16.0",
     "babelify": "^8.0.0",
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.24.6",
     "browserify": "^16.2.2",
     "clean-css": "^4.1.11",
     "css-mqpacker": "^6.0.2",
