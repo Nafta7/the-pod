@@ -1,60 +1,56 @@
 .footer-container
-  font-size: 1em
-  position: absolute
-  color: var(--white)
+  width: var(--footer-container-width)
+  font-size: var(--footer-container-font-size)
+  color: var(--footer-container-color)
+  margin: var(--footer-container-margin-y) var(--footer-container-margin-x)
+  transition: var(--footer-container-transition)
   display: flex
   justify-content: center
   align-items: stretch
-  transition: all 0.5s linear
-  margin: 0 auto
-  width: 100%
-  bottom: 0
-  left: 0
+  position: absolute
+  left: var(--footer-container-left)
+  bottom: var(--footer-container-bottom)
 
   @media (--small-viewport)
-    font-size: 0.9em
-    width: auto
+    width: var(--footer-container-width)
+    font-size: var(--footer-container-font-size)
     transform: translateX(-50%)
-    left: 50%
-    bottom: 0.4rem
+    left: var(--footer-container-sm-left)
+    bottom: var(--footer-container-sm-bottom)
 
 .footer-icon
-  z-index: 1
+  z-index: var(--footer-icon-z-index)
   display: flex
 
 .footer
+  transition: var(--footer-transition)
   opacity: 0
   display: flex
-  transition: opacity 0.2s linear
 
   &.show
     opacity: 1
-
-.footer-inner
-  background-color: var(--black)
-  justify-content: center
-  align-items: center
-  display: flex
-  width: 100%
-  padding: 0.5rem 1rem
-  font-size: 0.8rem
-
-.footer-inner-title
-  text-align: center
-  flex: 1 1 auto
-
-.footer-date
-  padding-left: 0.5rem
-  flex: 0 0 auto
-
 
 .footer-title
   flex: 1 auto
 
   @media (--small-viewport)
-    max-width: var(--title-width-small)
-    min-width: var(--title-width-small)
+    max-width: var(--footer-title-sm-width)
+    min-width: var(--footer-title-sm-width)
 
   @media (--medium-viewport)
-    max-width: var(--title-width-medium)
-    min-width: var(--title-width-medium)
+    max-width: var(--footer-title-md-width)
+    min-width: var(--footer-title-md-width)
+
+.footer-inner
+  width: var(--footer-inner-width)
+  font-size: var(--footer-inner-font-size)
+  padding: var(--footer-inner-padding-y) var(--footer-inner-padding-x)
+  background-color: var(--footer-inner-bg)
+  display: flex
+  justify-content: center
+  align-items: center
+
+.footer-inner-title
+  text-align: var(--footer-inner-title-text-align)
+  flex: 1 1 auto
+
