@@ -1,27 +1,28 @@
 .about-container
+  width: var(--about-container-width)
+  padding: var(--about-container-padding-y) var(--about-container-padding-x)
+  cursor: auto
   position: absolute
   top: 50%
   left: 50%
   transform: translate(-50%,-50%)
-  padding: 0 1em
-  width: 100%
-  cursor: default
 
   @media (--small-viewport)
-    width: auto
+    width: var(--about-container-sm-width)
+    padding: var(--about-container-sm-padding)
 
 .about
-  background: var(--black)
-  color: var(--white)
-  padding: 1.5em
+  background: var(--about-bg)
+  color: var(--about-color)
+  padding: var(--about-padding-y) var(--about-padding-x)
 
   @media (--small-viewport)
-    width: var(--text-width-small)
+    width: var(--about-sm-width)
 
   @media (--medium-viewport)
-    width: var(--text-width-medium)
+    width: var(--about-md-width)
 
 .about-credits-list
-  padding-left: 2em
-  list-style: square
+  padding-left: var(--about-credits-list-padding-left)
+  list-style: var(--about-credits-list-style)
 
