@@ -12,7 +12,7 @@ const AppWrapper = ({
   tries,
   children
 }) => {
-  let component, mainComponent
+  let component
 
   if (isFailure) {
     component = <Failure key="failure-key" tries={tries} />
@@ -23,8 +23,7 @@ const AppWrapper = ({
   )
 
   if (isAsync) {
-    mainComponent = appComponent
-    return mainComponent
+    return appComponent
   } else {
     if (isLoadingImage) {
       component = <Loading key="loading-key" />
@@ -33,7 +32,7 @@ const AppWrapper = ({
       component = appComponent
     }
 
-    const transitionComponent = (
+    return (
       <PreactCSSTransitionGroup
         transitionName="fade"
         transitionEnterTimeout={1000}
@@ -42,10 +41,7 @@ const AppWrapper = ({
         {component}
       </PreactCSSTransitionGroup>
     )
-
-    mainComponent = transitionComponent
   }
-  return mainComponent
 }
 
 export default AppWrapper
