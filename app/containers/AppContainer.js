@@ -205,6 +205,7 @@ class AppContainer extends Component {
         <Nav
           date={this.state.date}
           onActionClick={this.handleActionClick}
+          showSettings={this.state.showSettings}
           onSettingsClick={this.handleToggleClick.bind(
             null,
             ToggleType.SETTINGS
