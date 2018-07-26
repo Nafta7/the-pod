@@ -5,6 +5,7 @@ import AppConstants from '../constants/AppConstants'
 import ActionType from '../constants/ActionType'
 import DaySort from '../constants/DaySort'
 import SettingType from '../constants/SettingType'
+import ToggleType from '../constants/ToggleType'
 
 import AppWrapper from '../components/AppWrapper'
 import Nav from '../components/Nav'
@@ -22,6 +23,7 @@ import tomorrow from '../helpers/tomorrow'
 import yesterday from '../helpers/yesterday'
 import isDateSafe from '../helpers/is-date-safe'
 import updateImageWrapper from '../helpers/update-image-wrapper'
+import capitalize from '../helpers/capitalize'
 
 const downloadImage = new Image()
 
@@ -49,12 +51,9 @@ class AppContainer extends Component {
 
     this.setSetting = this.setSetting.bind(this)
     this.handleActionClick = this.handleActionClick.bind(this)
-    this.handleDescriptionClick = this.handleDescriptionClick.bind(this)
-    this.handleTitleClick = this.handleTitleClick.bind(this)
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
-    this.handleSettingsClick = this.handleSettingsClick.bind(this)
-    this.handleAboutClick = this.handleAboutClick.bind(this)
+    this.handleToggleClick = this.handleToggleClick.bind(this)
     this.loadImage = this.loadImage.bind(this)
     this.updateImage =
       config.mode === AppConstants.DEV_MODE
@@ -173,27 +172,11 @@ class AppContainer extends Component {
     )
   }
 
-  handleDescriptionClick() {
-    this.setState({
-      showDescription: !this.state.showDescription
-    })
-  }
+  handleToggleClick(type) {
+    const property = `show${capitalize(type)}`
 
-  handleTitleClick() {
     this.setState({
-      showTitle: !this.state.showTitle
-    })
-  }
-
-  handleSettingsClick(e) {
-    this.setState({
-      showSettings: !this.state.showSettings
-    })
-  }
-
-  handleAboutClick(e) {
-    this.setState({
-      showAbout: !this.state.showAbout
+      [property]: !this.state[property]
     })
   }
 
@@ -205,9 +188,9 @@ class AppContainer extends Component {
     })
   }
 
-  handleOverlayClick(property, e) {
-    const currentOverlay = property.replace('show', '').toLowerCase()
-    if (e.target.closest(`#${currentOverlay}`)) return
+  handleOverlayClick(type, e) {
+    const property = `show${capitalize(type)}`
+    if (e.target.closest(`#${type.toLowerCase()}`)) return
 
     this.setState({
       [property]: false,
@@ -223,8 +206,11 @@ class AppContainer extends Component {
           settings={this.state.settings}
           showSettings={this.state.showSettings}
           onActionClick={this.handleActionClick}
-          onSettingsClick={this.handleSettingsClick}
-          onAboutClick={this.handleAboutClick}
+          onSettingsClick={this.handleToggleClick.bind(
+            null,
+            ToggleType.SETTINGS
+          )}
+          onAboutClick={this.handleToggleClick.bind(null, ToggleType.ABOUT)}
           setSetting={this.setSetting}
         />
 
@@ -237,7 +223,7 @@ class AppContainer extends Component {
         />
         <Overlay
           showOverlay={this.state.showAbout}
-          onOverlayClick={this.handleOverlayClick.bind(null, 'showAbout')}
+          onOverlayClick={this.handleOverlayClick.bind(null, ToggleType.ABOUT)}
         >
           <About />
         </Overlay>
@@ -257,7 +243,7 @@ class AppContainer extends Component {
             showOverlay={this.state.showImageOverlay}
             onOverlayClick={this.handleOverlayClick.bind(
               null,
-              'showImageOverlay'
+              ToggleType.IMAGE_OVERLAY
             )}
           >
             <ImageOverlay imageUrl={this.state.imageUrl} />
@@ -269,8 +255,11 @@ class AppContainer extends Component {
           title={this.state.title}
           showTitle={this.state.showTitle}
           showDescription={this.state.showDescription}
-          onTitleClick={this.handleTitleClick}
-          onDescriptionClick={this.handleDescriptionClick}
+          onTitleClick={this.handleToggleClick.bind(null, ToggleType.TITLE)}
+          onDescriptionClick={this.handleToggleClick.bind(
+            null,
+            ToggleType.DESCRIPTION
+          )}
         />
       </div>
     )
