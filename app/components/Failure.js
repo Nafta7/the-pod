@@ -1,10 +1,10 @@
 import { h } from 'preact'
 
-const Failure = props => {
+const Failure = () => {
   return (
     <div class="container">
       <p class="quote">
-        Request failed. <br/>
+        Request failed. <br />
         Please, try again later.
       </p>
     </div>
