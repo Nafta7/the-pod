@@ -16,6 +16,7 @@ import Settings from './Settings'
 
 const Nav = ({
   onActionClick,
+  onAboutClick,
   onSettingsClick,
   setSetting,
   date,
@@ -87,6 +88,7 @@ const Nav = ({
         <Settings
           active={showSettings}
           setSetting={setSetting}
+          onAboutClick={onAboutClick}
           settings={settings}
         />
       </li>

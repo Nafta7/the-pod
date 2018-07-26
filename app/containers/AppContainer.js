@@ -7,10 +7,12 @@ import DaySort from '../constants/DaySort'
 import SettingType from '../constants/SettingType'
 
 import AppWrapper from '../components/AppWrapper'
-import ImageWrapper from '../components/ImageWrapper'
-import Description from '../components/Description'
 import Nav from '../components/Nav'
+import ImageWrapper from '../components/ImageWrapper'
+import ImageOverlay from '../components/ImageOverlay'
 import Overlay from '../components/Overlay'
+import Description from '../components/Description'
+import About from '../components/About'
 import Footer from '../components/Footer'
 
 import disableHoverEffectsOnMobile from '../helpers/disable-hover-effects-on-mobile'
@@ -33,6 +35,8 @@ class AppContainer extends Component {
     super(props)
     this.state = {
       showOverlay: false,
+      showAbout: false,
+      showImageOverlay: false,
       showSettings: false,
       showDescription: false,
       showTitle: true,
@@ -50,6 +54,7 @@ class AppContainer extends Component {
     this.handleImageClick = this.handleImageClick.bind(this)
     this.handleOverlayClick = this.handleOverlayClick.bind(this)
     this.handleSettingsClick = this.handleSettingsClick.bind(this)
+    this.handleAboutClick = this.handleAboutClick.bind(this)
     this.loadImage = this.loadImage.bind(this)
     this.updateImage =
       config.mode === AppConstants.DEV_MODE
@@ -180,25 +185,33 @@ class AppContainer extends Component {
     })
   }
 
+  handleSettingsClick(e) {
+    this.setState({
+      showSettings: !this.state.showSettings
+    })
+  }
+
+  handleAboutClick(e) {
+    this.setState({
+      showAbout: !this.state.showAbout
+    })
+  }
+
   handleImageClick(e) {
     e.preventDefault()
 
     this.setState({
-      showOverlay: true
+      showImageOverlay: true
     })
   }
 
-  handleOverlayClick(e) {
-    if (e.target.id === 'frame-image') return
+  handleOverlayClick(property, e) {
+    const currentOverlay = property.replace('show', '').toLowerCase()
+    if (e.target.closest(`#${currentOverlay}`)) return
 
     this.setState({
-      showOverlay: false
-    })
-  }
-
-  handleSettingsClick(e) {
-    this.setState({
-      showSettings: !this.state.showSettings
+      [property]: false,
+      showSettings: false
     })
   }
 
@@ -211,6 +224,7 @@ class AppContainer extends Component {
           showSettings={this.state.showSettings}
           onActionClick={this.handleActionClick}
           onSettingsClick={this.handleSettingsClick}
+          onAboutClick={this.handleAboutClick}
           setSetting={this.setSetting}
         />
 
@@ -234,10 +248,21 @@ class AppContainer extends Component {
           />
 
           <Overlay
-            imageUrl={this.state.imageUrl}
-            showOverlay={this.state.showOverlay}
-            onOverlayClick={this.handleOverlayClick}
-          />
+            showOverlay={this.state.showImageOverlay}
+            onOverlayClick={this.handleOverlayClick.bind(
+              null,
+              'showImageOverlay'
+            )}
+          >
+            <ImageOverlay imageUrl={this.state.imageUrl} />
+          </Overlay>
+
+          <Overlay
+            showOverlay={this.state.showAbout}
+            onOverlayClick={this.handleOverlayClick.bind(null, 'showAbout')}
+          >
+            <About />
+          </Overlay>
         </AppWrapper>
 
         <Footer

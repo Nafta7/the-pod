@@ -48,7 +48,7 @@ const Settings = props => {
         </div>
       </div>
 
-      <a href="#" class="settings-item">
+      <a href="#" class="settings-item" onClick={props.onAboutClick}>
         About
       </a>
       <a
