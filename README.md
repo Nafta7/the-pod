@@ -6,16 +6,16 @@
 >
 > [Wikipedia](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day)
 
-**The Pod** is a reimagining of the APOD UI using modern technology.
+**The Pod** is a reimagining of the APOD for the modern web.
 
 ## Features
 
 - Beautiful display of imagery.
 - Mobile-friendly.
-- Learn more about the picture using the **info** button.
-- Navigate between days using **previous** and **next** buttons.
-- Let lady luck pick a day for you using the **shuffle** button.
-- Click on the image to have a complete view of the image.
+- Learn more about the picture using the **Details** button.
+- Navigate between days using **Previous** and **Next** buttons.
+- Let lady luck pick a day for you using the **Shuffle** button.
+- Click on the image to have a complete view of the picture.
 
 ## Development
 
@@ -32,13 +32,13 @@ cd the-pod
 npm install
 ```
 
-Add your credentials to the new file:
+Add your API key to the **credentials** file:
 
 ```bash
 cp credentials-template.json credentials.json
 ```
 
-To start working:
+Start working!
 
 ```bash
 npm start
@@ -46,10 +46,10 @@ npm start
 
 ## License
 
-The Pod is distributed under the terms of the BSD-2.
+The Pod is open-source and is distributed under the terms and conditions of the BSD-2 license.
 
 ## Third-party resources
 
-[Material icons](https://github.com/google/material-design-icons/) - Provides the icons on the menu. | Apache 2.0
+[Material icons](https://github.com/google/material-design-icons/) - Provides the icons. License: Apache 2.0
 
-[NASA APOD API](https://api.nasa.gov/api.html#apod) - Provides the images displayed.
+[NASA APOD API](https://api.nasa.gov/api.html#apod) - Provides the data.
