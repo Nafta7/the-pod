@@ -20,7 +20,9 @@
 html {
   box-sizing: border-box;
   font-size: calc(12px + 10 * ((100vw - 320px) / 960));
-  line-height: calc(16px + 16 * ((100vw - 320px) / 960))
+  line-height: calc(16px + 16 * ((100vw - 320px) / 960));
+  overflow: hidden;
+  height: 100%
 }
 @media screen and (min-width: 1280px) {
   html {
@@ -47,6 +49,7 @@ body {
   /* background-image: linear-gradient(-20deg, var(--bg-major-color) 0%, var(--bg-minor-color) 100%) */
   background-color: hsl(0, 0%, 4.5%);
   overflow: hidden;
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif
@@ -56,6 +59,12 @@ body {
 }
 a, button {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+}
+a {
+  color: hsl(0, 0%, 95%)
+}
+a:hover {
+  text-decoration: line-through
 }
 p, h1, h2, h3, h4, h5, h6 {
   margin-top: 0
@@ -114,6 +123,9 @@ p {
   line-height: 1;
   flex-grow: 0
 }
+.text:not(:last-child) {
+  margin-bottom: 1em
+}
 .fade-enter {
   opacity: 0.01
 }
@@ -136,12 +148,12 @@ p {
   justify-content: center;
   align-items: stretch;
   flex: 1 0 auto;
-  margin: 0;
   position: absolute;
-  left: 0;
-  right: 0;
+  z-index: 5;
   padding: 0;
-  z-index: 5
+  width: 100%;
+  left: 0;
+  margin: 0
 }
 .menu li {
   display: flex;
@@ -167,8 +179,10 @@ p {
   visibility: visible
 }
 .settings-item {
-  padding: 0.3rem 1rem;
+  height: 2.5em;
   display: flex;
+  padding: 0 0.9em;
+  align-items: center;
   justify-content: space-between
 }
 .settings-item:hover {
@@ -194,7 +208,11 @@ a.settings-item {
   font-size: 1em;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none
 }
 .btn.active {
   color: hsl(0, 0%, 44%);
@@ -211,6 +229,9 @@ a.settings-item {
 }
 .btn[disabled] > .icon {
   fill: hsl(0, 0%, 12%)
+}
+.btn:hover {
+  text-decoration: none
 }
 .non-touch .btn-active {
   cursor: pointer;
@@ -240,7 +261,8 @@ a.settings-item {
   height: 1.5em
 }
 .btn-text {
-  display: none
+  display: none;
+  visibility: hidden
 }
 .btn-settings > .icon {
   transition: -webkit-transform 0.2s linear;
@@ -256,15 +278,16 @@ a.settings-item {
   align-items: center
 }
 .toggle-switch-input {
-  opacity: 0
+  opacity: 0;
+  display: none
 }
 .toggle-switch-input[disabled] + label {
   cursor: not-allowed;
   opacity: 0.4
 }
 .toggle-switch-input + label {
-  background: hsl(0, 0%, 80%);
   font-size: 1.8em;
+  background: hsl(0, 0%, 80%);
   display: inline-block;
   width: 2em;
   height: 1em;
@@ -335,15 +358,15 @@ a.settings-item {
 .footer-container {
   font-size: 1em;
   position: absolute;
-  bottom: 0;
-  left: 0;
   color: hsl(0, 0%, 95%);
   display: flex;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
+  transition: all 0.5s linear;
   margin: 0 auto;
-  transition: all 0.5s linear
+  width: 100%;
+  bottom: 0;
+  left: 0
 }
 .footer-icon {
   z-index: 1;
@@ -352,15 +375,9 @@ a.settings-item {
 .footer {
   opacity: 0;
   display: flex;
-  -webkit-transform: translateX(-7%);
-          transform: translateX(-7%);
-  transition: opacity 0.2s linear, -webkit-transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out, opacity 0.2s linear;
-  transition: transform 0.2s ease-in-out, opacity 0.2s linear, -webkit-transform 0.2s ease-in-out
+  transition: opacity 0.2s linear
 }
 .footer.show {
-  -webkit-transform: translateX(0%);
-          transform: translateX(0%);
   opacity: 1
 }
 .footer-inner {
@@ -383,6 +400,24 @@ a.settings-item {
 .footer-title {
   flex: 1 auto
 }
+.about-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+  padding: 0 1em;
+  width: 100%
+}
+.about {
+  background: hsl(0, 0%, 5%);
+  color: hsl(0, 0%, 95%);
+  padding: 1.5em
+}
+.about-credits-list {
+  padding-left: 2em;
+  list-style: square
+}
 .overlay {
   background: rgba(0,0,0,.8);
   position: fixed;
@@ -398,9 +433,9 @@ a.settings-item {
 }
 .frame {
   position: relative;
+  text-indent: -9999px;
   width: 100%;
   height: 100%;
-  text-align: center;
   max-height: 70%;
   max-width: 70%;
   margin: 0 auto;
@@ -479,6 +514,10 @@ a.settings-item {
 }
 @media (min-width: 700px) {
   .menu {
+    width: auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     margin-top: 0.4rem;
     font-size: 0.9em
   }
@@ -490,6 +529,7 @@ a.settings-item {
   }
   .btn-text {
     display: inline;
+    visibility: visible;
     padding-left: 0.2rem
   }
   .description {
@@ -501,12 +541,22 @@ a.settings-item {
     max-height: 65vh
   }
   .footer-container {
-    bottom: 0.4rem;
-    font-size: 0.9em
+    font-size: 0.9em;
+    width: auto;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    left: 50%;
+    bottom: 0.4rem
   }
   .footer-title {
     max-width: 300px;
     min-width: 300px
+  }
+  .about-container {
+    width: auto
+  }
+  .about {
+    width: 600px
   }
   .frame {
     max-height: 80%;
@@ -529,5 +579,8 @@ a.settings-item {
   .footer-title {
     max-width: 600px;
     min-width: 600px
+  }
+  .about {
+    width: 700px
   }
 }
