@@ -8,14 +8,18 @@
 :root
   // Color palette
 
-  --white: hsl(0, 0%, 95%)
+  --white: hsl(0, 0%, 100%)
   --black: hsl(0, 0%, 5%)
-  --black-dark: hsl(0, 0%, 4.5%)
-  --light-gray: hsl(0, 0%, 44%)
-  --dark-gray: hsl(0, 0%, 10%)
-  --neutral-color: hsl(0, 0%, 60%)
-  --light-black: hsl(0, 0%, 12%)
   --green: hsl(140, 70%, 45%)
+  --gray-10: hsl(0, 0%, 10%)
+  --gray-20: hsl(0, 0%, 20%)
+  --gray-30: hsl(0, 0%, 30%)
+  --gray-40: hsl(0, 0%, 40%)
+  --gray-50: hsl(0, 0%, 50%)
+  --gray-60: hsl(0, 0%, 60%)
+  --gray-70: hsl(0, 0%, 70%)
+  --gray-80: hsl(0, 0%, 80%)
+  --gray-90: hsl(0, 0%, 90%)
 
 
   // Typography
@@ -26,7 +30,7 @@
     "Droid Serif", "Times","Source Serif Pro", "DejaVu Serif", serif
 
 
-  // Description
+  // Text / Title
 
   --text-width: 500px
   --text-width-small: 600px
@@ -38,22 +42,40 @@
 
   // Buttons
 
-  --btn-active-color: var(--light-gray)
-  --btn-inactive-color: var(--light-black)
+  --btn-width: 100%
+  --btn-font-size: 1em
+  --btn-padding-y: 0.8rem
+  --btn-padding-x: 1.1rem
+  --btn-color: var(--gray-80)
+  --btn-bg: var(--black)
+  --btn-transition: background-color 0.5s
+  --btn-border-width: 0
+
+  --btn-active-color: var(--white)
+  --btn-active-cursor: pointer
+
+  --btn-inactive-color: var(--gray-10)
+  --btn-inactive-bg: var(--black)
+  --btn-inactive-cursor: not-allowed
+
+  --btn-text-sm-padding-left: 0.2rem
+
+  --btn-settings-transform: rotate(35deg)
+  --btn-settings-transition: transform 0.2s linear
 
 
   // Toggle-switch
 
   --toggle-switch-color: var(--white)
   --toggle-switch-on-bg-color: var(--green)
-  --toggle-switch-off-bg-color: hsl(0, 0%, 80%)
+  --toggle-switch-off-bg-color: var(--gray-20)
 
 
-  // Loading
+  // Icon
 
-  --ring-size: 3.2
-  --loader-size: 7
-  --ring-inner-text: 'Downloading image'
+  --icon-fill: var(--btn-color)
+  --icon-width: 1.5em
+  --icon-height: 1.5rem
 
 
   // About
@@ -98,9 +120,9 @@
   --description-text-color: var(--white)
   --description-text-align: justify
   --description-text-bg: rgba(0,0,0,0.8)
-  --description-text-border-width: 6px
+  --description-text-border-width: 0px
   --description-text-border-style: solid
-  --description-text-border-color: (--dark-gray)
+  --description-text-border-color: var(--white)
 
   --description-text-only-sm-max-height: 50vh
   --description-text-sm-width: var(--text-width-small)
@@ -141,6 +163,7 @@
 
 
   // Menu
+
   --menu-left: 0
   --menu-width: 100%
   --menu-padding-y: 0
@@ -174,6 +197,13 @@
 
   --settings-item-hover-bg: rgba(75,75,75,0.3)
 
-  --settings-item-disabled-color: var(--light-gray)
+  --settings-item-disabled-color: var(--gray-50)
 
   --settings-item-link-color: var(--white)
+
+
+  // Loader / Spinner
+
+  --ring-size: 3.2
+  --loader-size: 7
+  --ring-inner-text: 'Downloading image'

@@ -1,22 +1,22 @@
 .btn
-  width: 100%
-  border-width: 0
+  width: var(--btn-width)
+  font-size: var(--btn-font-size)
+  padding: var(--btn-padding-y) var(--btn-padding-x)
+  color: var(--btn-color)
   background-color: var(--black)
-  color: var(--white)
-  padding: 0.8rem 1.1rem
-  transition: background-color 0.5s
-  font-size: 1em
+  transition: var(--btn-transition)
+  border-width: var(--btn-border-width)
+  user-select: none
   display: flex
   align-items: center
   justify-content: center
-  user-select: none
 
   &.active
     color: var(--btn-active-color)
     cursor: pointer
 
     & > .icon
-      fill: var(--btn-active-color)
+      fill: var(--btn-color)
 
   &:focus
     outline: none
@@ -33,39 +33,38 @@
 .non-touch
 
   & .btn-active, & .btn:hover
-    cursor: pointer
     color: var(--btn-active-color)
+    cursor: var(--btn-active-cursor)
 
     & > .icon
       fill: var(--btn-active-color)
 
   & .btn[disabled]:hover
-    cursor: not-allowed
-    background-color: var(--black)
+    background-color: var(--btn-inactive-bg)
     color: var(--btn-inactive-color)
+    cursor: var(--btn-inactive-cursor)
 
     & > .icon
       fill: var(--btn-inactive-color)
-
-.icon
-  fill: white
-  width: 1.5em
-  height: 1.5em
 
 .btn-text
   display: none
   visibility: hidden
 
   @media (--small-viewport)
+    padding-left: var(--btn-text-sm-padding-left)
     display: inline
     visibility: visible
-    padding-left: 0.2rem
-
 
 .btn-settings
   & > .icon
-    transition: transform 0.2s linear
+    transition: var(--btn-settings-transition)
 
   &.open
     & > .icon
-      transform: rotate(35deg)
+      transform: var(--btn-settings-transform)
+
+.icon
+  fill: var(--icon-fill)
+  width: var(--icon-width)
+  height: var(--icon-height)
