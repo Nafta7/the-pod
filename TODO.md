@@ -2,14 +2,18 @@
 
 ## High priority
 
-- [ ] Refactor AppContainer render
-- [ ] Implement About option
+- [x] Refactor AppContainer render
+- [x] Implement About option
+- [x] Refactor Overlay component
+- [ ] Add SVG cursor to the overlay component (close icon)
+- [ ] Create stylesheet variables for the components that are missing
+- [ ] Pass the Settings component to the Nav component instead of inline in it.
 
 ## Medium priority
 
+- [x] Make an introduction and explain the project's purpose on the site.
+- [x] Improve readme.
 - [ ] Fix frame/overlay component to have bigger max-[width,height].
-- [ ] Make an introduction and explain the project's purpose on the site.
-- [ ] Improve readme.
 - [ ] Make a nicier loading animation.
 
 ## Low priority
